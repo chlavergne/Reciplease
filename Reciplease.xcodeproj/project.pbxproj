@@ -18,6 +18,8 @@
 		D550E370270CE84100E54416 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36F270CE84100E54416 /* FavoriteController.swift */; };
 		D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E371270DA0E400E54416 /* SearchResultsController.swift */; };
 		D550E374270DAB9600E54416 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E373270DAB9600E54416 /* RecipeController.swift */; };
+		D550E376270DCDA100E54416 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E375270DCDA100E54416 /* Ingredient.swift */; };
+		D550E378270DCDC800E54416 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E377270DCDC800E54416 /* IngredientService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		D550E36F270CE84100E54416 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		D550E371270DA0E400E54416 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		D550E373270DAB9600E54416 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
+		D550E375270DCDA100E54416 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		D550E377270DCDC800E54416 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				D550E357270CBC8D00E54416 /* Reciplease.xcdatamodeld */,
+				D550E375270DCDA100E54416 /* Ingredient.swift */,
+				D550E377270DCDC800E54416 /* IngredientService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,9 +185,11 @@
 			files = (
 				D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */,
 				D550E370270CE84100E54416 /* FavoriteController.swift in Sources */,
+				D550E376270DCDA100E54416 /* Ingredient.swift in Sources */,
 				D550E353270CBC8D00E54416 /* SearchController.swift in Sources */,
 				D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */,
 				D550E36E270CE56100E54416 /* TabBarController.swift in Sources */,
+				D550E378270DCDC800E54416 /* IngredientService.swift in Sources */,
 				D550E374270DAB9600E54416 /* RecipeController.swift in Sources */,
 				D550E34F270CBC8D00E54416 /* AppDelegate.swift in Sources */,
 				D550E351270CBC8D00E54416 /* SceneDelegate.swift in Sources */,
