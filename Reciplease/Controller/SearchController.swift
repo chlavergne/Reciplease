@@ -26,6 +26,9 @@ class SearchController: UIViewController {
         tableView.reloadData()
     }
     
+    @IBAction func clearCell(_ sender: Any) {
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +49,8 @@ extension SearchController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return IngredientService.shared.ingredients.count
+        let totalCell = IngredientService.shared.ingredients.count
+        return totalCell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,5 +58,15 @@ extension SearchController: UITableViewDataSource {
         let ingredient = IngredientService.shared.ingredients[indexPath.row]
         cell.textLabel?.text = ingredient.name
         return cell
+    }
+}
+
+extension SearchController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            IngredientService.shared.removeIngredient(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
