@@ -16,6 +16,8 @@
 		D550E35E270CBC8F00E54416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D550E35C270CBC8F00E54416 /* LaunchScreen.storyboard */; };
 		D550E36E270CE56100E54416 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36D270CE56100E54416 /* TabBarController.swift */; };
 		D550E370270CE84100E54416 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36F270CE84100E54416 /* FavoriteController.swift */; };
+		D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E371270DA0E400E54416 /* SearchResultsController.swift */; };
+		D550E374270DAB9600E54416 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E373270DAB9600E54416 /* RecipeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D550E35F270CBC8F00E54416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D550E36D270CE56100E54416 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D550E36F270CE84100E54416 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
+		D550E371270DA0E400E54416 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		D550E373270DAB9600E54416 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				D550E36D270CE56100E54416 /* TabBarController.swift */,
 				D550E352270CBC8D00E54416 /* SearchController.swift */,
 				D550E36F270CE84100E54416 /* FavoriteController.swift */,
+				D550E371270DA0E400E54416 /* SearchResultsController.swift */,
+				D550E373270DAB9600E54416 /* RecipeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,7 +180,9 @@
 				D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */,
 				D550E370270CE84100E54416 /* FavoriteController.swift in Sources */,
 				D550E353270CBC8D00E54416 /* SearchController.swift in Sources */,
+				D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */,
 				D550E36E270CE56100E54416 /* TabBarController.swift in Sources */,
+				D550E374270DAB9600E54416 /* RecipeController.swift in Sources */,
 				D550E34F270CBC8D00E54416 /* AppDelegate.swift in Sources */,
 				D550E351270CBC8D00E54416 /* SceneDelegate.swift in Sources */,
 			);
