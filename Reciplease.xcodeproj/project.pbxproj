@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45A5BFFFC0A210A0CBBD27B3 /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C173C18BCD8439200EC0B912 /* Pods_Reciplease.framework */; };
 		D550E34F270CBC8D00E54416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E34E270CBC8D00E54416 /* AppDelegate.swift */; };
 		D550E351270CBC8D00E54416 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E350270CBC8D00E54416 /* SceneDelegate.swift */; };
 		D550E353270CBC8D00E54416 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E352270CBC8D00E54416 /* SearchController.swift */; };
@@ -18,7 +19,6 @@
 		D550E370270CE84100E54416 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36F270CE84100E54416 /* FavoriteController.swift */; };
 		D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E371270DA0E400E54416 /* SearchResultsController.swift */; };
 		D550E374270DAB9600E54416 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E373270DAB9600E54416 /* RecipeController.swift */; };
-		D550E376270DCDA100E54416 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E375270DCDA100E54416 /* Ingredient.swift */; };
 		D550E378270DCDC800E54416 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E377270DCDC800E54416 /* IngredientService.swift */; };
 		D550E37A270E0F3400E54416 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E379270E0F3400E54416 /* RecipeResponse.swift */; };
 		D550E37C270E1A1500E54416 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E37B270E1A1500E54416 /* Api.swift */; };
@@ -28,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CF580766C283F3A236D719A /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
+		C173C18BCD8439200EC0B912 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D550E34B270CBC8D00E54416 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D550E34E270CBC8D00E54416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D550E350270CBC8D00E54416 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,13 +43,13 @@
 		D550E36F270CE84100E54416 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		D550E371270DA0E400E54416 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		D550E373270DAB9600E54416 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
-		D550E375270DCDA100E54416 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		D550E377270DCDC800E54416 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
 		D550E379270E0F3400E54416 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 		D550E37B270E1A1500E54416 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		D550E37D270E20A100E54416 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		D550E381270E36B300E54416 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		D550E382270E36B300E54416 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		F059359125DA534287BD9595 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +57,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A5BFFFC0A210A0CBBD27B3 /* Pods_Reciplease.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		119660EA546041DAB3B87C6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C173C18BCD8439200EC0B912 /* Pods_Reciplease.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBCF5CF976DE24C8ABDAC1A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CF580766C283F3A236D719A /* Pods-Reciplease.debug.xcconfig */,
+				F059359125DA534287BD9595 /* Pods-Reciplease.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D550E342270CBC8D00E54416 = {
 			isa = PBXGroup;
 			children = (
 				D550E34D270CBC8D00E54416 /* Reciplease */,
 				D550E34C270CBC8D00E54416 /* Products */,
+				CBCF5CF976DE24C8ABDAC1A6 /* Pods */,
+				119660EA546041DAB3B87C6F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				D550E357270CBC8D00E54416 /* Reciplease.xcdatamodeld */,
-				D550E375270DCDA100E54416 /* Ingredient.swift */,
 				D550E377270DCDC800E54416 /* IngredientService.swift */,
 				D550E379270E0F3400E54416 /* RecipeResponse.swift */,
 				D550E37D270E20A100E54416 /* RecipeService.swift */,
@@ -150,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D550E362270CBC8F00E54416 /* Build configuration list for PBXNativeTarget "Reciplease" */;
 			buildPhases = (
+				0C3A04E8C8EF9F5E59C29F13 /* [CP] Check Pods Manifest.lock */,
 				D550E347270CBC8D00E54416 /* Sources */,
 				D550E348270CBC8D00E54416 /* Frameworks */,
 				D550E349270CBC8D00E54416 /* Resources */,
+				F32B473D29ED214472B4E980 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,6 +233,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0C3A04E8C8EF9F5E59C29F13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reciplease-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F32B473D29ED214472B4E980 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D550E347270CBC8D00E54416 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -217,7 +282,6 @@
 			files = (
 				D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */,
 				D550E370270CE84100E54416 /* FavoriteController.swift in Sources */,
-				D550E376270DCDA100E54416 /* Ingredient.swift in Sources */,
 				D550E383270E36B300E54416 /* RecipeTableViewCell.swift in Sources */,
 				D550E353270CBC8D00E54416 /* SearchController.swift in Sources */,
 				D550E37A270E0F3400E54416 /* RecipeResponse.swift in Sources */,
@@ -372,6 +436,7 @@
 		};
 		D550E363270CBC8F00E54416 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CF580766C283F3A236D719A /* Pods-Reciplease.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -393,12 +458,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D550E364270CBC8F00E54416 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F059359125DA534287BD9595 /* Pods-Reciplease.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -420,7 +486,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

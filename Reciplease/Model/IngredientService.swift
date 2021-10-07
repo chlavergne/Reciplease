@@ -11,12 +11,14 @@ class IngredientService {
     static let shared = IngredientService()
     private init() {}
 
-    private(set) var ingredients: [Ingredient] = []
+    var ingredients: [String] = []
+  
 
-    func add(ingredient: Ingredient) {
+    func add(ingredient: String) {
         ingredients.append(ingredient)
     }
-    func removeIngredient(at index: Int) {
-        ingredients.remove(at: index)
+    func removeIngredient() {
+        if ingredients.count > 0 {
+            ingredients.removeLast()} else {return}
     }
 }

@@ -15,16 +15,16 @@ class SearchResultsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        recipesTableView.reloadData()
         
         // Register Cell
         recipesTableView.register(UINib.init(nibName: recipeCellId, bundle: nil), forCellReuseIdentifier: recipeCellId)
-//        recipesTableView.rowHeight = UITableView.automaticDimension
         recipesTableView.separatorColor = UIColor.clear
-        recipesTableView.reloadData()
+//        RecipeService.shared.fetchJSON()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        recipesTableView.reloadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        recipesTableView.reloadData()
+//    }
 }
 
 extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
@@ -33,13 +33,24 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return IngredientService.shared.ingredients.count
+        return SearchController().recipesLoaded.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: recipeCellId, for: indexPath) as! RecipeTableViewCell
         cell.selectionStyle = .none
-        let ingredient = IngredientService.shared.ingredients[indexPath.row]
-        cell.subtitle?.text = ingredient.name
+//        let ingredient = IngredientService.shared.ingredients[indexPath.row]
+        let recipeName = SearchController().recipesLoaded[indexPath.row].recipe.label
+        cell.title?.text = recipeName
         return cell
     }
 }
+
+extension UIViewController {
+    func presentAlert(error: String) {
+        let alert = UIAlertController(title: "Erreur", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+}
+

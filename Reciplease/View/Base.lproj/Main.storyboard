@@ -49,6 +49,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="loadRecipes:" destination="4V1-S7-IrW" eventType="touchUpInside" id="MjA-kG-KF5"/>
                                     <segue destination="zqM-rY-J4A" kind="show" id="hXl-zy-GAl"/>
                                 </connections>
                             </button>
@@ -191,7 +192,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7Dw-Cb-EmI" detailTextLabel="CvU-X8-jt6" style="IBUITableViewCellStyleSubtitle" id="5Uz-1U-2Ht">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" textLabel="7Dw-Cb-EmI" detailTextLabel="CvU-X8-jt6" style="IBUITableViewCellStyleSubtitle" id="5Uz-1U-2Ht" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Uz-1U-2Ht" id="1ah-ag-IKS">

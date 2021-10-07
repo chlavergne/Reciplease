@@ -10,8 +10,16 @@ import Foundation
 
 class SearchController: UIViewController {
     
+    var recipesLoaded = RecipeService.shared.recipeList
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
+        searchBar.delegate = self
+    }
     
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -19,22 +27,25 @@ class SearchController: UIViewController {
     }
     
     @IBAction func addIngredient(_ sender: UIButton) {
-        guard let name = searchBar.text else {
-            return
-        }
-        let ingredient = Ingredient(name: name)
-        IngredientService.shared.add(ingredient: ingredient)
+        guard let ingredientName = searchBar.text else { return }
+        IngredientService.shared.add(ingredient: ingredientName)
         tableView.reloadData()
     }
     
     @IBAction func clearCell(_ sender: Any) {
-
+        IngredientService.shared.removeIngredient()
+        tableView.reloadData()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
-        searchBar.delegate = self
+    @IBAction func loadRecipes(_ sender: Any) {
+        let session = URLSession(configuration: .default)
+        RecipeService(session: session).fetchJSON {(error, recipeList) in
+            if self.recipesLoaded.count > 0 {
+                SearchResultsController().recipesTableView.reloadData()
+               } else {
+                    self.presentAlert(error: error?.localizedDescription ?? "Erreur de chargement")
+                }
+        }
     }
 }
 
@@ -57,7 +68,7 @@ extension SearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = IngredientService.shared.ingredients[indexPath.row]
-        cell.textLabel?.text = ingredient.name
+        cell.textLabel?.text = ingredient
         return cell
     }
 }
@@ -66,7 +77,7 @@ extension SearchController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            IngredientService.shared.removeIngredient(at: indexPath.row)
+            IngredientService.shared.removeIngredient()
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

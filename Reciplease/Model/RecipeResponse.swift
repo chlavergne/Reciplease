@@ -7,20 +7,25 @@
 
 import Foundation
 
-struct RecipeResponse: Codable {
+struct RecipeResponse: Decodable {
+    let count: Int
+    let hits:[Recipes]
+}
+
+struct Recipes: Decodable {
     let recipe: Recipe
 }
-
-struct Recipe: Codable {
+//
+struct Recipe: Decodable {
     let label: String
-    let image: String
-    let ingredientLines: [String]
-    let totalTime: Int
-    let mealType: [String]
-    let calories: Int
-    let ingredients: [Ingredients]
+//    let image: String
+//    let ingredientLines: [String]
+//    let totalTime: Int
+//    let mealType: [String]
+//    let calories: Int
+//    let ingredients: [Ingredients]
 }
 
-struct Ingredients: Codable {
-    let food: String
-}
+//struct Ingredients: Decodable {
+//    let food: String
+//}
