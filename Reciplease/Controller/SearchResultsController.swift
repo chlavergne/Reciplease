@@ -9,38 +9,40 @@ import UIKit
 import Foundation
 
 class SearchResultsController: UIViewController {
-
-    let recipeCellId = "RecipeTableViewCell"
+    
+    // MARK: -
+    static let recipeCellId = "RecipeTableViewCell"
+    var recipes: [Recipes] = []
+    
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        recipesTableView.reloadData()
         
         // Register Cell
-        recipesTableView.register(UINib.init(nibName: recipeCellId, bundle: nil), forCellReuseIdentifier: recipeCellId)
+        recipesTableView.register(UINib.init(nibName: SearchResultsController.recipeCellId, bundle: nil), forCellReuseIdentifier: SearchResultsController.recipeCellId)
         recipesTableView.separatorColor = UIColor.clear
-//        RecipeService.shared.fetchJSON()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        recipesTableView.reloadData()
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        recipesTableView.reloadData()
+    }
 }
 
+// MARK: - Extensions
 extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SearchController().recipesLoaded.count
+        return self.recipes.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: recipeCellId, for: indexPath) as! RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
         cell.selectionStyle = .none
-//        let ingredient = IngredientService.shared.ingredients[indexPath.row]
-        let recipeName = SearchController().recipesLoaded[indexPath.row].recipe.label
-        cell.title?.text = recipeName
+        let recipeName = recipes[indexPath.row].recipe
+        cell.title?.text = recipeName.label
         return cell
     }
 }

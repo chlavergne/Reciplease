@@ -10,18 +10,22 @@ import Foundation
 
 class SearchController: UIViewController {
     
-    var recipesLoaded = RecipeService.shared.recipeList
+    // MARK: - Propertie
+    var recipesLoaded: [Recipes] = []
     
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
+        tabBarController?.hidesBottomBarWhenPushed = false
     }
     
-    
+    // MARK: - IBActions
     @IBAction func dismissKeyboard(_ sender: Any) {
         searchBar.resignFirstResponder()
     }
@@ -38,17 +42,27 @@ class SearchController: UIViewController {
     }
     
     @IBAction func loadRecipes(_ sender: Any) {
-        let session = URLSession(configuration: .default)
-        RecipeService(session: session).fetchJSON {(error, recipeList) in
+        loadingIndicator.startAnimating()
+        RecipeService.shared.fetchJSON {(error, recipeList) in
+            self.loadingIndicator.stopAnimating()
+            self.recipesLoaded = recipeList ?? []
             if self.recipesLoaded.count > 0 {
-                SearchResultsController().recipesTableView.reloadData()
-               } else {
-                    self.presentAlert(error: error?.localizedDescription ?? "Erreur de chargement")
-                }
+                self.performSegue(withIdentifier: "ShowRecipes", sender: nil)
+            } else {
+                self.presentAlert(error: error?.localizedDescription ?? "Erreur de chargement")
+            }
+        }
+    }
+    
+    // MARK: - Method
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? SearchResultsController{
+            controller.recipes = self.recipesLoaded
         }
     }
 }
 
+//MARK: - Extensions
 extension SearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

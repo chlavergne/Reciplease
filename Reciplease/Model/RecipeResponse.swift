@@ -15,17 +15,17 @@ struct RecipeResponse: Decodable {
 struct Recipes: Decodable {
     let recipe: Recipe
 }
-//
+
 struct Recipe: Decodable {
     let label: String
-//    let image: String
+    let image: String
 //    let ingredientLines: [String]
-//    let totalTime: Int
+    let totalTime: Int
 //    let mealType: [String]
-//    let calories: Int
-//    let ingredients: [Ingredients]
+    let calories: Double
+    let ingredients: [Ingredients]
 }
 
-//struct Ingredients: Decodable {
-//    let food: String
-//}
+struct Ingredients: Decodable {
+    let food: String
+}

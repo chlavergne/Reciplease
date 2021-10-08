@@ -50,7 +50,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loadRecipes:" destination="4V1-S7-IrW" eventType="touchUpInside" id="MjA-kG-KF5"/>
-                                    <segue destination="zqM-rY-J4A" kind="show" id="hXl-zy-GAl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prP-my-II9">
@@ -139,6 +138,10 @@
                                     <action selector="clearCell:" destination="4V1-S7-IrW" eventType="touchUpInside" id="8ew-rh-jnh"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="iyk-3l-3BB">
+                                <rect key="frame" x="188" y="429" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5CY-r9-b5F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -170,8 +173,10 @@
                         <barButtonItem key="backBarButtonItem" title="Search" id="3yg-U1-CAi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicator" destination="iyk-3l-3BB" id="UzW-I8-6OG"/>
                         <outlet property="searchBar" destination="Jdd-g1-5ap" id="z2m-kD-bT1"/>
                         <outlet property="tableView" destination="tui-uk-ZAC" id="vYb-MW-zA1"/>
+                        <segue destination="HbU-aA-7kp" kind="show" identifier="ShowRecipes" id="UEw-s2-dOw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMB-lL-8es" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -232,7 +237,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSb-ym-b2W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4979.7101449275369" y="-674.33035714285711"/>
+            <point key="canvasLocation" x="4172" y="-674"/>
         </scene>
         <!--Recipe Controller-->
         <scene sceneID="wtb-Uo-dzz">
@@ -335,25 +340,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s07-iH-44V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2211.594202898551" y="41.517857142857139"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="eOd-aE-18S">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zqM-rY-J4A" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="yKL-6U-aVn"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sMl-8z-coO">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="HbU-aA-7kp" kind="relationship" relationship="viewControllers" id="AJl-xJ-Rht"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tZL-5A-PB2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4069.5652173913045" y="-674.33035714285711"/>
         </scene>
     </scenes>
     <resources>
