@@ -42,7 +42,14 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
         cell.selectionStyle = .none
         let recipeName = recipes[indexPath.row].recipe
-        cell.title?.text = recipeName.label
+        cell.title.text = recipeName.label
+        let caloriesFormat = String(format: "%.0f", recipeName.calories)
+        cell.calories.text = "\(caloriesFormat)Cal"
+        if String(recipeName.totalTime) == "0" {
+            cell.totalTime.text = "--m"} else {
+                cell.totalTime.text = "\(recipeName.totalTime)m"
+            }
+        
         return cell
     }
 }
