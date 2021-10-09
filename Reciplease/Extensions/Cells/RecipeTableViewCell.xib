@@ -41,7 +41,7 @@
                         <rect key="frame" x="674" y="10" width="70" height="50"/>
                         <subviews>
                             <label userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 Cal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4V-KH-GJ2">
-                                <rect key="frame" x="25" y="5" width="45" height="14.5"/>
+                                <rect key="frame" x="21" y="5" width="45" height="14.5"/>
                                 <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="SEj-6I-roW"/>
@@ -51,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXz-fM-3ay">
-                                <rect key="frame" x="30" y="30.5" width="40" height="14.5"/>
+                                <rect key="frame" x="26" y="30.5" width="40" height="14.5"/>
                                 <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="f1c-sf-R9P"/>
@@ -81,9 +81,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FXz-fM-3ay" secondAttribute="trailing" id="3Rp-Zd-rxL"/>
+                            <constraint firstAttribute="trailing" secondItem="FXz-fM-3ay" secondAttribute="trailing" constant="4" id="3Rp-Zd-rxL"/>
                             <constraint firstItem="l4V-KH-GJ2" firstAttribute="centerY" secondItem="QeZ-mh-6B6" secondAttribute="centerY" id="8hu-fA-aJr"/>
-                            <constraint firstAttribute="trailing" secondItem="l4V-KH-GJ2" secondAttribute="trailing" id="GEz-uQ-5k1"/>
+                            <constraint firstAttribute="trailing" secondItem="l4V-KH-GJ2" secondAttribute="trailing" constant="4" id="GEz-uQ-5k1"/>
                             <constraint firstItem="FXz-fM-3ay" firstAttribute="centerY" secondItem="WU2-ZC-pLD" secondAttribute="centerY" id="Ky3-wh-GEG"/>
                             <constraint firstAttribute="height" constant="50" id="Oqb-On-SwJ"/>
                             <constraint firstItem="WU2-ZC-pLD" firstAttribute="leading" secondItem="j2w-zK-d9c" secondAttribute="leading" constant="6" id="gNT-9O-2kA"/>

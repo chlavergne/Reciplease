@@ -45,10 +45,10 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         let recipeName = recipes[indexPath.row].recipe
         cell.title.text = recipeName.label
         let caloriesFormat = String(format: "%.0f", recipeName.calories)
-        cell.calories.text = "\(caloriesFormat)Cal"
+        cell.calories.text = "\(caloriesFormat) Cal"
         if String(recipeName.totalTime) == "0" {
-            cell.totalTime.text = "--m"} else {
-                cell.totalTime.text = "\(recipeName.totalTime)m"
+            cell.totalTime.text = "-- m"} else {
+                cell.totalTime.text = "\(recipeName.totalTime) m"
             }
         let url = URL(string:recipeName.image)
         cell.recipeImage.sd_setImage(with: url,placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)

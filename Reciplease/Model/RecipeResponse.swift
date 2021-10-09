@@ -23,9 +23,9 @@ struct Recipe: Decodable {
     let totalTime: Int
 //    let mealType: [String]
     let calories: Double
-    let ingredients: [Ingredients]
+    let ingredients: [Ingredient]
 }
 
-struct Ingredients: Decodable {
+struct Ingredient: Decodable {
     let food: String
 }
