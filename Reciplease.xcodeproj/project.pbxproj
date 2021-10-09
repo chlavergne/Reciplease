@@ -25,6 +25,7 @@
 		D550E37E270E20A100E54416 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E37D270E20A100E54416 /* RecipeService.swift */; };
 		D550E383270E36B300E54416 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E381270E36B300E54416 /* RecipeTableViewCell.swift */; };
 		D550E384270E36B300E54416 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D550E382270E36B300E54416 /* RecipeTableViewCell.xib */; };
+		D550E3882711B8BD00E54416 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E3872711B8BD00E54416 /* CustomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D550E37D270E20A100E54416 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		D550E381270E36B300E54416 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		D550E382270E36B300E54416 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		D550E3872711B8BD00E54416 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		F059359125DA534287BD9595 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 		D550E37F270E363900E54416 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D550E3872711B8BD00E54416 /* CustomView.swift */,
 				D550E380270E365B00E54416 /* Cells */,
 				D550E37B270E1A1500E54416 /* Api.swift */,
 			);
@@ -283,6 +286,7 @@
 				D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */,
 				D550E370270CE84100E54416 /* FavoriteController.swift in Sources */,
 				D550E383270E36B300E54416 /* RecipeTableViewCell.swift in Sources */,
+				D550E3882711B8BD00E54416 /* CustomView.swift in Sources */,
 				D550E353270CBC8D00E54416 /* SearchController.swift in Sources */,
 				D550E37A270E0F3400E54416 /* RecipeResponse.swift in Sources */,
 				D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */,

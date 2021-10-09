@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import SDWebImage
 
 class SearchResultsController: UIViewController {
     
@@ -49,7 +50,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
             cell.totalTime.text = "--m"} else {
                 cell.totalTime.text = "\(recipeName.totalTime)m"
             }
-        
+        let url = URL(string:recipeName.image)
+        cell.recipeImage.sd_setImage(with: url,placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
         return cell
     }
 }
