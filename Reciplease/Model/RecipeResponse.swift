@@ -19,9 +19,9 @@ struct Recipes: Decodable {
 struct Recipe: Decodable {
     let label: String
     let image: String
-//    let ingredientLines: [String]
+    let url: String
+    let ingredientLines: [String]
     let totalTime: Int
-//    let mealType: [String]
     let calories: Double
     let ingredients: [Ingredient]
 }

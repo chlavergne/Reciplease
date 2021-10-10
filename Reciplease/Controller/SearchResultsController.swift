@@ -11,10 +11,13 @@ import SDWebImage
 
 class SearchResultsController: UIViewController {
     
-    // MARK: -
+    // MARK: - Properties
+    static var recipeToSend: Recipes?
+    
     static let recipeCellId = "RecipeTableViewCell"
     var recipes: [Recipes] = []
     
+    // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +30,12 @@ class SearchResultsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         recipesTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? RecipeController{
+            controller.recipeReceived = SearchResultsController.recipeToSend
+        }
     }
 }
 
@@ -53,6 +62,11 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         let url = URL(string:recipeName.image)
         cell.recipeImage.sd_setImage(with: url,placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipeSelected = recipes[indexPath.row]
+        SearchResultsController.recipeToSend = recipeSelected
+        self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }
 

@@ -8,15 +8,18 @@
 import Foundation
 
 class IngredientService {
-    static let shared = IngredientService()
-    private init() {}
-
+    
+    // MARK: - Properties
     var ingredients: [String] = []
-  
-
+    static let shared = IngredientService()
+    
+    private init() {}
+    
+    // MARK: - Methods
     func add(ingredient: String) {
         ingredients.append(ingredient)
     }
+    
     func removeIngredient() {
         if ingredients.count > 0 {
             ingredients.removeLast()} else {return}
