@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70P-iT-HJ0">
-                                <rect key="frame" x="30" y="713" width="354" height="60"/>
+                                <rect key="frame" x="30" y="743" width="354" height="60"/>
                                 <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="QP8-zy-Vyb"/>
@@ -86,7 +86,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tui-uk-ZAC" userLabel="ListIngredient">
-                                <rect key="frame" x="0.0" y="294.5" width="414" height="388.5"/>
+                                <rect key="frame" x="0.0" y="294.5" width="414" height="433.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Your ingredients :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ekY-Zp-7yI">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -151,14 +151,14 @@
                             <constraint firstItem="tui-uk-ZAC" firstAttribute="trailing" secondItem="5CY-r9-b5F" secondAttribute="trailing" id="9Nd-Ft-dN3"/>
                             <constraint firstItem="Jdd-g1-5ap" firstAttribute="leading" secondItem="5CY-r9-b5F" secondAttribute="leading" constant="30" id="B3d-mR-NDd"/>
                             <constraint firstItem="5CY-r9-b5F" firstAttribute="trailing" secondItem="5Jm-Je-J1N" secondAttribute="trailing" constant="30" id="Jhy-8O-v5K"/>
-                            <constraint firstItem="70P-iT-HJ0" firstAttribute="top" secondItem="tui-uk-ZAC" secondAttribute="bottom" constant="30" id="KqP-nF-QIw"/>
+                            <constraint firstItem="70P-iT-HJ0" firstAttribute="top" secondItem="tui-uk-ZAC" secondAttribute="bottom" constant="15" id="KqP-nF-QIw"/>
                             <constraint firstItem="lrS-LT-qfz" firstAttribute="top" secondItem="tui-uk-ZAC" secondAttribute="top" constant="5" id="Mla-lI-B9W"/>
                             <constraint firstItem="tui-uk-ZAC" firstAttribute="leading" secondItem="5CY-r9-b5F" secondAttribute="leading" id="NfG-tf-svW"/>
                             <constraint firstItem="Jdd-g1-5ap" firstAttribute="top" secondItem="5Jm-Je-J1N" secondAttribute="bottom" constant="25" id="STn-2J-JXT"/>
                             <constraint firstItem="5CY-r9-b5F" firstAttribute="trailing" secondItem="lrS-LT-qfz" secondAttribute="trailing" constant="30" id="TwK-E7-ObF"/>
                             <constraint firstItem="5CY-r9-b5F" firstAttribute="trailing" secondItem="prP-my-II9" secondAttribute="trailing" constant="30" id="Uit-eU-rUG"/>
                             <constraint firstItem="prP-my-II9" firstAttribute="leading" secondItem="Jdd-g1-5ap" secondAttribute="trailing" id="VKT-8f-HZ6"/>
-                            <constraint firstItem="5CY-r9-b5F" firstAttribute="bottom" secondItem="70P-iT-HJ0" secondAttribute="bottom" constant="40" id="YAl-ji-3hU"/>
+                            <constraint firstItem="5CY-r9-b5F" firstAttribute="bottom" secondItem="70P-iT-HJ0" secondAttribute="bottom" constant="10" id="YAl-ji-3hU"/>
                             <constraint firstItem="5CY-r9-b5F" firstAttribute="trailing" secondItem="70P-iT-HJ0" secondAttribute="trailing" constant="30" id="b6u-20-f06"/>
                             <constraint firstItem="70P-iT-HJ0" firstAttribute="leading" secondItem="5CY-r9-b5F" secondAttribute="leading" constant="30" id="cmV-FX-hzI"/>
                             <constraint firstItem="prP-my-II9" firstAttribute="top" secondItem="5Jm-Je-J1N" secondAttribute="bottom" constant="32" id="kfQ-W6-eTW"/>
@@ -249,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5z-ei-Acf">
-                                <rect key="frame" x="30" y="713" width="354" height="60"/>
+                                <rect key="frame" x="30" y="743" width="354" height="60"/>
                                 <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="w2S-Qt-CKG"/>
@@ -272,7 +272,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DqV-NV-nvg" userLabel="ListIngredient">
-                                <rect key="frame" x="0.0" y="366" width="414" height="347"/>
+                                <rect key="frame" x="0.0" y="366" width="414" height="362"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Ingredients " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tuT-5v-RJJ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -384,11 +384,11 @@
                             <constraint firstItem="bO2-4w-IER" firstAttribute="top" secondItem="9fm-7k-NgI" secondAttribute="top" constant="10" id="MjU-Aa-NzZ"/>
                             <constraint firstItem="EtB-nb-BeM" firstAttribute="leading" secondItem="9fm-7k-NgI" secondAttribute="leading" constant="10" id="R5w-Gs-myp"/>
                             <constraint firstItem="9fm-7k-NgI" firstAttribute="trailing" secondItem="EtB-nb-BeM" secondAttribute="trailing" constant="10" id="RJd-kn-w5u"/>
-                            <constraint firstItem="U5z-ei-Acf" firstAttribute="top" secondItem="DqV-NV-nvg" secondAttribute="bottom" id="T6M-uw-GPf"/>
+                            <constraint firstItem="U5z-ei-Acf" firstAttribute="top" secondItem="DqV-NV-nvg" secondAttribute="bottom" constant="15" id="T6M-uw-GPf"/>
                             <constraint firstItem="9fm-7k-NgI" firstAttribute="trailing" secondItem="U5z-ei-Acf" secondAttribute="trailing" constant="30" id="UEo-6M-pE8"/>
                             <constraint firstItem="DqV-NV-nvg" firstAttribute="trailing" secondItem="9fm-7k-NgI" secondAttribute="trailing" id="bpR-XY-rug"/>
                             <constraint firstItem="dhC-s6-0jo" firstAttribute="leading" secondItem="9fm-7k-NgI" secondAttribute="leading" id="ddr-9R-jyw"/>
-                            <constraint firstItem="9fm-7k-NgI" firstAttribute="bottom" secondItem="U5z-ei-Acf" secondAttribute="bottom" constant="40" id="eXl-0M-0c2"/>
+                            <constraint firstItem="9fm-7k-NgI" firstAttribute="bottom" secondItem="U5z-ei-Acf" secondAttribute="bottom" constant="10" id="eXl-0M-0c2"/>
                             <constraint firstItem="dhC-s6-0jo" firstAttribute="top" secondItem="9fm-7k-NgI" secondAttribute="top" id="hVL-PW-sWx"/>
                             <constraint firstItem="9fm-7k-NgI" firstAttribute="trailing" secondItem="bO2-4w-IER" secondAttribute="trailing" constant="10" id="iBw-yb-Dmm"/>
                             <constraint firstItem="U5z-ei-Acf" firstAttribute="leading" secondItem="9fm-7k-NgI" secondAttribute="leading" constant="30" id="nJJ-K4-fx4"/>
