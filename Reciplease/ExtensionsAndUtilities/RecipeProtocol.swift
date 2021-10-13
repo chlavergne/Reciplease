@@ -14,4 +14,5 @@ protocol RecipeProtocol {
     func imageUrl() -> URL
     func totalTime() -> String
     func ingredients() -> String
+    func ingredientLines() -> [String]
 }

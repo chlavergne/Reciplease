@@ -13,11 +13,11 @@ class SearchResultsController: UIViewController {
     
     
     // MARK: - Properties
-    static var recipeToSend: Recipes?
+    static var recipeToSend: RecipeProtocol?
     
     static let recipeCellId = "RecipeTableViewCell"
     var recipes: [Recipes] = []
-    var recipe: Recipe?
+    private var recipe: Recipe?
     
     init(recipe: Recipe) {
         self.recipe = recipe
@@ -62,13 +62,13 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
-        let recipeName = recipes[indexPath.row].recipe
+        let recipeResult = recipes[indexPath.row].recipe
         
-        cell.title.text = SearchResultsController(recipe: recipeName).title()
-        cell.calories.text = SearchResultsController(recipe: recipeName).calories()
-        cell.totalTime.text = SearchResultsController(recipe: recipeName).totalTime()
-        cell.subtitle.text = SearchResultsController(recipe: recipeName).ingredients()
-        let urlToLoad = SearchResultsController(recipe: recipeName).imageUrl()
+        cell.title.text = SearchResultsController(recipe: recipeResult).title()
+        cell.calories.text = SearchResultsController(recipe: recipeResult).calories()
+        cell.totalTime.text = SearchResultsController(recipe: recipeResult).totalTime()
+        cell.subtitle.text = SearchResultsController(recipe: recipeResult).ingredients()
+        let urlToLoad = SearchResultsController(recipe: recipeResult).imageUrl()
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
         
@@ -76,8 +76,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeSelected = recipes[indexPath.row]
-        SearchResultsController.recipeToSend = recipeSelected
+        let recipeSelected = recipes[indexPath.row].recipe
+        SearchResultsController.recipeToSend = SearchResultsController(recipe: recipeSelected)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }
@@ -92,6 +92,11 @@ extension UIViewController {
 }
 
 extension SearchResultsController: RecipeProtocol {
+    func ingredientLines() -> [String] {
+        let ingredientLines = recipe!.ingredientLines
+        return ingredientLines
+    }
+    
     
     func ingredients() -> String {
         var joinedList = ""

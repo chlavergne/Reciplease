@@ -27,6 +27,7 @@
 		D550E384270E36B300E54416 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D550E382270E36B300E54416 /* RecipeTableViewCell.xib */; };
 		D550E3882711B8BD00E54416 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E3872711B8BD00E54416 /* CustomView.swift */; };
 		D550E38A2714343E00E54416 /* RecipeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E3892714343E00E54416 /* RecipeProtocol.swift */; };
+		D5CD82532715B3630076D80C /* RecipeFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD82522715B3630076D80C /* RecipeFavorite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		D550E382270E36B300E54416 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
 		D550E3872711B8BD00E54416 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		D550E3892714343E00E54416 /* RecipeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeProtocol.swift; sourceTree = "<group>"; };
+		D5CD82522715B3630076D80C /* RecipeFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavorite.swift; sourceTree = "<group>"; };
 		F059359125DA534287BD9595 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 				D550E377270DCDC800E54416 /* IngredientService.swift */,
 				D550E379270E0F3400E54416 /* RecipeResponse.swift */,
 				D550E37D270E20A100E54416 /* RecipeService.swift */,
+				D5CD82522715B3630076D80C /* RecipeFavorite.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				D550E383270E36B300E54416 /* RecipeTableViewCell.swift in Sources */,
 				D550E3882711B8BD00E54416 /* CustomView.swift in Sources */,
 				D550E38A2714343E00E54416 /* RecipeProtocol.swift in Sources */,
+				D5CD82532715B3630076D80C /* RecipeFavorite.swift in Sources */,
 				D550E353270CBC8D00E54416 /* SearchController.swift in Sources */,
 				D550E37A270E0F3400E54416 /* RecipeResponse.swift in Sources */,
 				D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */,

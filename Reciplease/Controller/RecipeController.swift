@@ -13,31 +13,69 @@ import SafariServices
 class RecipeController: UIViewController {
     
     // MARK: - Propertie
-    var recipeReceived: Recipes!
+    var recipeReceived: RecipeProtocol?
+    
+//    private var recipe: Recipe?
+//
+//    init(recipe: RecipeProtocol) {
+//        self.recipeReceived = recipe
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
     
     // MARK: - IBOutlets
-    @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var mainRecipeText: UILabel!
     @IBOutlet weak var mainRecipeImage: UIImageView!
     @IBOutlet weak var mainCalories: UILabel!
     @IBOutlet weak var mainTime: UILabel!
     @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var favoriSelector: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeTableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
-        recipeName.text = recipeReceived?.recipe.label
-        let url = URL(string:recipeReceived!.recipe.image)
+        mainRecipeText.text = recipeReceived!.title()
+        mainCalories.text = recipeReceived!.calories()
+        mainTime.text = recipeReceived!.totalTime()
+        let url = recipeReceived!.imageUrl()
         mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
-        let caloriesFormat = String(format: "%.0f", recipeReceived.recipe.calories)
-        mainCalories.text = "\(caloriesFormat) Cal"
-        mainTime.text = "\(recipeReceived.recipe.totalTime) m"
         recipeTableView.reloadData()
+        
+    }
+    
+    @IBAction func favoriSelector(_ sender: Any) {
+        switchFavoriteIcon()
+    }
+    
+    private func switchFavoriteIcon() {
+        let selectedImage = UIImage(systemName: "star.fill")
+        let unselectedImage = UIImage(systemName: "star")
+        if favoriSelector.image(for: .normal) == selectedImage {
+            favoriSelector.setImage(unselectedImage, for: .normal)
+            removeFromFavorite()
+        } else {
+            favoriSelector.setImage(selectedImage, for: .normal)
+            addToFavorite()
+        }
+    }
+    
+    private func addToFavorite() {
+        let savedRecipe = RecipeFavorite(context: AppDelegate.viewContext)
+        savedRecipe.savedName = mainRecipeText.text
+        try? AppDelegate.viewContext.save()
+
+    }
+    
+    private func removeFromFavorite() {
         
     }
     
     // MARK: - IBAction
     @IBAction func getDirection(_ sender: Any) {
-        if let url = URL(string: "\(recipeReceived.recipe.url)") {
+        if let url = URL(string: "\(recipeReceived!.imageUrl())") {
             let safariVC = SFSafariViewController(url: url)
             present(safariVC, animated: true, completion: nil)
         }
@@ -51,14 +89,43 @@ extension RecipeController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let totalCell = recipeReceived.recipe.ingredientLines.count
+        let totalCell = recipeReceived!.ingredientLines().count
         return totalCell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientLineCell", for: indexPath)
-        let ingredient = recipeReceived.recipe.ingredientLines[indexPath.row]
+        let ingredient = recipeReceived!.ingredientLines()[indexPath.row]
         cell.textLabel?.text = ingredient
         return cell
     }
 }
+
+//extension RecipeController: RecipeProtocol {
+//    func title() -> String {
+//        mainRecipeText.text = recipeReceived!.title()
+//        return mainRecipeText.text!
+//    }
+//
+//    func calories() -> String {
+//        let caloriesFormat = String(format: "%.0f", recipeReceived!.calories)
+//        mainCalories.text = "\(caloriesFormat) Cal"
+//        return mainCalories.text!
+//    }
+//
+//    func imageUrl() -> URL {
+//        let url = URL(string:recipeReceived!.imageUrl())
+//        return url!
+//    }
+//
+//    func totalTime() -> String {
+//        mainTime.text = "\(recipeReceived!.totalTime) m"
+//        return mainTime.text!
+//    }
+//
+//    func ingredients() -> String {
+//        return ""
+//    }
+//
+//
+//}
