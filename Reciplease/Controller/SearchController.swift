@@ -23,6 +23,7 @@ class SearchController: UIViewController {
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
         tabBarController?.hidesBottomBarWhenPushed = false
+        
     }
     
     // MARK: - IBActions

@@ -58,13 +58,19 @@ class RecipeController: UIViewController {
             removeFromFavorite()
         } else {
             favoriSelector.setImage(selectedImage, for: .normal)
-            addToFavorite()
+            addToFavorite(recipe: recipeReceived!)
         }
     }
     
-    private func addToFavorite() {
+    private func addToFavorite(recipe: RecipeProtocol) {
         let savedRecipe = RecipeFavorite(context: AppDelegate.viewContext)
-        savedRecipe.savedName = mainRecipeText.text
+        savedRecipe.savedName = recipe.title()
+        savedRecipe.savedCalories = recipe.calories()
+        savedRecipe.savedTotalTime = recipe.totalTime()
+        savedRecipe.savedIngredients = recipe.ingredients()
+        savedRecipe.savedIngredientLines = recipe.ingredientLines()
+        savedRecipe.savedUrl = recipe.imageUrl()
+
         try? AppDelegate.viewContext.save()
 
     }
