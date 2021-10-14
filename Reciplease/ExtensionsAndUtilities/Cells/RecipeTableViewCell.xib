@@ -93,8 +93,17 @@
                             <constraint firstItem="l4V-KH-GJ2" firstAttribute="top" secondItem="j2w-zK-d9c" secondAttribute="top" constant="5" id="xyr-QQ-DpT"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5kc-Fz-JH6">
+                        <rect key="frame" x="714" y="59.5" width="30" height="30"/>
+                        <color key="tintColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="7mE-1Y-fal"/>
+                            <constraint firstAttribute="height" constant="30" id="iOp-5z-oCF"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5kc-Fz-JH6" firstAttribute="top" secondItem="j2w-zK-d9c" secondAttribute="bottom" id="7N9-xu-a1f"/>
                     <constraint firstItem="KqW-FH-nQ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="E5w-EE-u9S"/>
                     <constraint firstItem="66Q-Nz-9b3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="IFD-6U-lwf"/>
                     <constraint firstItem="66Q-Nz-9b3" firstAttribute="top" secondItem="Qgu-9Q-heC" secondAttribute="bottom" id="NlN-kv-LK0"/>
@@ -105,6 +114,7 @@
                     <constraint firstAttribute="bottom" secondItem="KqW-FH-nQ6" secondAttribute="bottom" id="fyF-vO-Yn0"/>
                     <constraint firstAttribute="trailing" secondItem="Qgu-9Q-heC" secondAttribute="trailing" id="h5z-sP-Uiq"/>
                     <constraint firstItem="KqW-FH-nQ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iDU-dx-GKD"/>
+                    <constraint firstAttribute="trailing" secondItem="5kc-Fz-JH6" secondAttribute="trailing" constant="10" id="oQI-Y4-bLp"/>
                     <constraint firstItem="Qgu-9Q-heC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="t0O-e0-MVb"/>
                     <constraint firstAttribute="trailing" secondItem="j2w-zK-d9c" secondAttribute="trailing" constant="10" id="uaA-K3-wIe"/>
                 </constraints>
@@ -112,6 +122,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="calories" destination="l4V-KH-GJ2" id="uZl-mh-X9v"/>
+                <outlet property="favoriteStar" destination="5kc-Fz-JH6" id="mf2-vn-fSe"/>
                 <outlet property="recipeImage" destination="KqW-FH-nQ6" id="TSz-Og-v4o"/>
                 <outlet property="subtitle" destination="66Q-Nz-9b3" id="sl1-s3-EQz"/>
                 <outlet property="title" destination="Qgu-9Q-heC" id="jjd-4p-Ky3"/>
@@ -124,5 +135,6 @@
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="flame" catalog="system" width="108" height="128"/>
         <image name="generique2" width="3852" height="2556"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>

@@ -4,11 +4,12 @@
         <attribute name="savedCalories" optional="YES" attributeType="String"/>
         <attribute name="savedIngredientLines" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName=".[String]"/>
         <attribute name="savedIngredients" optional="YES" attributeType="String"/>
+        <attribute name="savedIsFavorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="savedName" optional="YES" attributeType="String"/>
         <attribute name="savedTotalTime" optional="YES" attributeType="String"/>
         <attribute name="savedUrl" optional="YES" attributeType="URI" defaultValueString="https://openclassrooms.com/fr"/>
     </entity>
     <elements>
-        <element name="RecipeFavorite" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="RecipeFavorite" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

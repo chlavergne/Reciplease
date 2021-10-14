@@ -42,5 +42,8 @@ extension RecipeFavorite: RecipeProtocol {
         return savedIngredientLines!
     }
     
+    func isFavorite() -> Bool {
+        return savedIsFavorite
+    }
     
 }

@@ -27,6 +27,14 @@ class FavoriteController: UIViewController {
                                    forCellReuseIdentifier: FavoriteController.recipeCellId)
         favoriteTableView.separatorColor = UIColor.clear
         favoriteTableView.reloadData()
+        
+        let request: NSFetchRequest<RecipeFavorite> = RecipeFavorite.fetchRequest()
+                guard let recipeToDelete = try? AppDelegate.viewContext.fetch(request) else {
+                    return
+                }
+                for object in recipeToDelete {
+                    AppDelegate.viewContext.delete(object)
+                    }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,12 +60,13 @@ extension FavoriteController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteController.recipeCellId, for: indexPath) as! RecipeTableViewCell
-        let recipeResult = favoriteList[indexPath.row]
+       let recipeResult = favoriteList[indexPath.row]
         
         cell.title.text = recipeResult.title()
         cell.calories.text = recipeResult.calories()
         cell.totalTime.text = recipeResult.totalTime()
         cell.subtitle.text = recipeResult.ingredients()
+        cell.favoriteStar.isHidden = false
         let urlToLoad = recipeResult.imageUrl()
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)

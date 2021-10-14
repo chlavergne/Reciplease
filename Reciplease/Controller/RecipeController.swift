@@ -15,18 +15,8 @@ class RecipeController: UIViewController {
     
     // MARK: - Propertie
     var recipeReceived: RecipeProtocol?
-    
-//    private var recipe: Recipe?
-//
-//    init(recipe: RecipeProtocol) {
-//        self.recipeReceived = recipe
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-    
+    var isFavorite: Bool?
+
     // MARK: - IBOutlets
     @IBOutlet weak var mainRecipeText: UILabel!
     @IBOutlet weak var mainRecipeImage: UIImageView!
@@ -42,6 +32,9 @@ class RecipeController: UIViewController {
         mainCalories.text = recipeReceived!.calories()
         mainTime.text = recipeReceived!.totalTime()
         let url = recipeReceived!.imageUrl()
+        isFavorite = recipeReceived!.isFavorite()
+        setFavorite()
+        print(isFavorite!)
         mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
         recipeTableView.reloadData()
         
@@ -52,14 +45,16 @@ class RecipeController: UIViewController {
     }
     
     private func switchFavoriteIcon() {
-        let selectedImage = UIImage(systemName: "star.fill")
-        let unselectedImage = UIImage(systemName: "star")
-        if favoriSelector.image(for: .normal) == selectedImage {
-            favoriSelector.setImage(unselectedImage, for: .normal)
-            removeFromFavorite()
-        } else {
-            favoriSelector.setImage(selectedImage, for: .normal)
+        if isFavorite == false {
+            isFavorite = true
+            setFavorite()
             addToFavorite(recipe: recipeReceived!)
+           
+        } else {
+            isFavorite = false
+            setFavorite()
+            removeFromFavorite()
+          
         }
     }
     
@@ -71,13 +66,24 @@ class RecipeController: UIViewController {
         savedRecipe.savedIngredients = recipe.ingredients()
         savedRecipe.savedIngredientLines = recipe.ingredientLines()
         savedRecipe.savedUrl = recipe.imageUrl()
-
+        savedRecipe.savedIsFavorite = isFavorite!
         try? AppDelegate.viewContext.save()
-    
+        
     }
     
     private func removeFromFavorite() {
-       
+        AppDelegate.viewContext.delete(recipeReceived! as! NSManagedObject)
+        try? AppDelegate.viewContext.save()
+    }
+    
+    private func setFavorite() {
+        let selectedImage = UIImage(systemName: "star.fill")
+        let unselectedImage = UIImage(systemName: "star")
+        if isFavorite == true {
+            favoriSelector.setImage(selectedImage, for: .normal)
+        } else {
+            favoriSelector.setImage(unselectedImage, for: .normal)
+        }
     }
     
     // MARK: - IBAction
@@ -107,32 +113,3 @@ extension RecipeController: UITableViewDataSource {
         return cell
     }
 }
-
-//extension RecipeController: RecipeProtocol {
-//    func title() -> String {
-//        mainRecipeText.text = recipeReceived!.title()
-//        return mainRecipeText.text!
-//    }
-//
-//    func calories() -> String {
-//        let caloriesFormat = String(format: "%.0f", recipeReceived!.calories)
-//        mainCalories.text = "\(caloriesFormat) Cal"
-//        return mainCalories.text!
-//    }
-//
-//    func imageUrl() -> URL {
-//        let url = URL(string:recipeReceived!.imageUrl())
-//        return url!
-//    }
-//
-//    func totalTime() -> String {
-//        mainTime.text = "\(recipeReceived!.totalTime) m"
-//        return mainTime.text!
-//    }
-//
-//    func ingredients() -> String {
-//        return ""
-//    }
-//
-//
-//}

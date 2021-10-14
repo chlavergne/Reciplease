@@ -15,4 +15,5 @@ protocol RecipeProtocol {
     func totalTime() -> String
     func ingredients() -> String
     func ingredientLines() -> [String]
+    func isFavorite() -> Bool
 }
