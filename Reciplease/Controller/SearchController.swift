@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class SearchController: UIViewController {
     
@@ -23,8 +24,7 @@ class SearchController: UIViewController {
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
         tabBarController?.hidesBottomBarWhenPushed = false
-        
-    }
+        }
     
     // MARK: - IBActions
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -44,6 +44,7 @@ class SearchController: UIViewController {
     
     @IBAction func loadRecipes(_ sender: Any) {
         loadingIndicator.startAnimating()
+    print(IngredientService.shared.ingredients)
         RecipeService.shared.fetchJSON {(error, recipeList) in
             self.loadingIndicator.stopAnimating()
             self.recipesLoaded = recipeList ?? []

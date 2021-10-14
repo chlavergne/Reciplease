@@ -417,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aH5-5C-2Rl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5115.9420289855079" y="-674.33035714285711"/>
+            <point key="canvasLocation" x="5554" y="-190"/>
         </scene>
         <!--FavoriteController-->
         <scene sceneID="grj-LX-PKG">
@@ -483,6 +483,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favoriteTableView" destination="vhe-Yd-fJ6" id="FJ8-fK-dOZ"/>
+                        <segue destination="m5Z-MW-Q0F" kind="show" identifier="ShowFavoriteRecipeDetail" id="RGf-RU-LeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="65i-Km-vEr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -535,6 +536,9 @@
             <point key="canvasLocation" x="2211.594202898551" y="41.517857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RGf-RU-LeZ"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="clock" catalog="system" width="128" height="121"/>

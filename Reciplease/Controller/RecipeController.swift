@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SDWebImage
 import SafariServices
+import CoreData
 
 class RecipeController: UIViewController {
     
@@ -72,11 +73,11 @@ class RecipeController: UIViewController {
         savedRecipe.savedUrl = recipe.imageUrl()
 
         try? AppDelegate.viewContext.save()
-
+    
     }
     
     private func removeFromFavorite() {
-        
+       
     }
     
     // MARK: - IBAction

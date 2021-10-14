@@ -12,27 +12,19 @@ import CoreData
 
 class FavoriteController: UIViewController {
     
+    // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
-    var favoriteList: [RecipeProtocol] = RecipeFavorite.all
-//    private var recipeFavorite: RecipeFavorite?
+    static var recipeToSend: RecipeProtocol?
+    private var favoriteList: [RecipeProtocol] = RecipeFavorite.all
     
-//    init(recipeFavorite: RecipeFavorite) {
-//        self.recipeFavorite = recipeFavorite
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-//
-    
+    // MARK: - IBOutlet
     @IBOutlet weak var favoriteTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register Cell
         favoriteTableView.register(UINib.init(nibName: FavoriteController.recipeCellId, bundle: nil),
-                                  forCellReuseIdentifier: FavoriteController.recipeCellId)
+                                   forCellReuseIdentifier: FavoriteController.recipeCellId)
         favoriteTableView.separatorColor = UIColor.clear
         favoriteTableView.reloadData()
     }
@@ -41,8 +33,15 @@ class FavoriteController: UIViewController {
         favoriteTableView.reloadData()
         self.favoriteList = RecipeFavorite.all
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? RecipeController{
+            controller.recipeReceived = FavoriteController.recipeToSend
+        }
+    }
 }
 
+// MARK: - Extensions
 extension FavoriteController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -59,15 +58,15 @@ extension FavoriteController: UITableViewDataSource, UITableViewDelegate {
         cell.calories.text = recipeResult.calories()
         cell.totalTime.text = recipeResult.totalTime()
         cell.subtitle.text = recipeResult.ingredients()
-//        let urlToLoad = recipeResult.imageUrl()
-//        cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
-//                                     options: .continueInBackground,completed: nil)
+        let urlToLoad = recipeResult.imageUrl()
+        cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
+                                     options: .continueInBackground,completed: nil)
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let recipeSelected = recipes[indexPath.row].recipe
-//        SearchResultsController.recipeToSend = SearchResultsController(recipe: recipeSelected)
-//        self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipeSelected = favoriteList[indexPath.row]
+        FavoriteController.recipeToSend = recipeSelected
+        self.performSegue(withIdentifier: "ShowFavoriteRecipeDetail", sender: nil)
+    }
 }
