@@ -41,7 +41,6 @@ class FavoriteController: UIViewController {
         super.viewWillAppear(animated)
         self.favoriteList = RecipeCoreData.all
         favoriteTableView.reloadData()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

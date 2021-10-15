@@ -12,12 +12,11 @@ import CoreData
 class SearchResultsController: UIViewController {
     
     // MARK: - Properties
-    
     static let recipeCellId = "RecipeTableViewCell"
     var showFavorite = true
     var recipes: [Recipe] = []
+    private var index = 0
     private var selectedRecipe: Recipe?
-    
     
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
@@ -41,6 +40,7 @@ class SearchResultsController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? RecipeController, let recipe = selectedRecipe {
             controller.recipe = recipe
+            controller.row = index
         }
     }
 }
@@ -54,10 +54,10 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.recipes.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
         let recipeResult = recipes[indexPath.row]
-        
         cell.title.text = recipeResult.label
         cell.calories.text = recipeResult.displayableCalories
         cell.totalTime.text = recipeResult.displayableTotalTime
@@ -66,12 +66,12 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
         cell.favoriteStar.isHidden = !(recipeResult.isFavorite ?? false)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
+        index = indexPath.row
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }

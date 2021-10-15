@@ -24,11 +24,8 @@ struct Recipe: Decodable {
     let totalTime: Double
     let calories: Double
     let ingredients: [Ingredient]
-    
-    
-    
+
     var isFavorite: Bool?
-    
     
     var displayableIngredients: String {
         var joinedList = ""
@@ -67,7 +64,6 @@ struct Recipe: Decodable {
         return formatedTime
     }
 }
-
 
 struct Ingredient: Codable {
     let food: String

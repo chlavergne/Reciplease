@@ -9,11 +9,12 @@ import Foundation
 import CoreData
 
 class RecipeCoreData: NSManagedObject {
+    
     private static let context = AppDelegate.viewContext
     
     static var all: [Recipe] {
         let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
-        guard let recipeFavourites = try? AppDelegate.viewContext.fetch(request) else { return [] }
+        guard let recipeFavourites = try? context.fetch(request) else { return [] }
         let recipes = recipeFavourites.map { recipeCoreData in
             recipeCoreData.model
         }
@@ -32,14 +33,24 @@ class RecipeCoreData: NSManagedObject {
         try? context.save()
     }
     
-    static func remove(recipe: Recipe) {
-     // fetch l'ID from coredata   let recipeCoreData =
-        // context.delete(recipeCoreData)
+    static func remove(recipe: Recipe, row: Int) {
+        let itemIDsFetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "RecipeCoreData")
+        itemIDsFetchRequest.resultType = .managedObjectIDResultType
+        do {
+            let ids = try context.fetch(itemIDsFetchRequest)
+            let recipeToDelete = try context.existingObject(with: ids[row])
+            context.delete(recipeToDelete)
+        }catch let error as NSError {
+            print("Fetch item failed:\(error), \(error.userInfo)")
+        }
+        try? context.save()
     }
+    
     var model: Recipe {
         let ingredient = try! JSONDecoder().decode([Ingredient].self, from: self.ingredients!)
         let ingredientLines = try! JSONDecoder().decode([String].self, from: self.ingredientLines!)
-        var recipe = Recipe(label: title!, image: imageUrl!, url: directionUrl!, ingredientLines: ingredientLines, totalTime: totalTime, calories: calories, ingredients: ingredient)
+        var recipe = Recipe(label: title!, image: imageUrl!, url: directionUrl!, ingredientLines: ingredientLines,
+                            totalTime: totalTime, calories: calories, ingredients: ingredient)
         recipe.isFavorite = true
         return recipe
     }

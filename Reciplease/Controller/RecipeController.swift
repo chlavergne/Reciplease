@@ -16,7 +16,8 @@ class RecipeController: UIViewController {
     // MARK: - Propertie
     var recipe: Recipe!
     var isFavorite = false
-
+    var row = 0
+    
     // MARK: - IBOutlets
     @IBOutlet weak var mainRecipeText: UILabel!
     @IBOutlet weak var mainRecipeImage: UIImageView!
@@ -34,9 +35,9 @@ class RecipeController: UIViewController {
         let url = recipe.imageUrl
         isFavorite = recipe.isFavorite ?? false
         setFavorite()
-        mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
+        mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"),
+                                    options: .continueInBackground,completed: nil)
         recipeTableView.reloadData()
-        
     }
     
     @IBAction func favoriSelector(_ sender: Any) {
@@ -48,23 +49,19 @@ class RecipeController: UIViewController {
             isFavorite = true
             setFavorite()
             addToFavorite(recipe: recipe!)
-           
         } else {
             isFavorite = false
             setFavorite()
-            removeFromFavorite()
-          
+            removeFromFavorite(recipe: recipe!)
         }
     }
     
     private func addToFavorite(recipe: Recipe) {
         RecipeCoreData.insert(recipe: recipe)
-        
     }
     
-    private func removeFromFavorite() {
-        AppDelegate.viewContext.delete(recipe! as! NSManagedObject)
-        try? AppDelegate.viewContext.save()
+    private func removeFromFavorite(recipe: Recipe) {
+        RecipeCoreData.remove(recipe: recipe, row: row)
     }
     
     private func setFavorite() {
