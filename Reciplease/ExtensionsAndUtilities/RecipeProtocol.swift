@@ -16,4 +16,5 @@ protocol RecipeProtocol {
     func ingredients() -> String
     func ingredientLines() -> [String]
     func isFavorite() -> Bool
+    func urlDirections() -> String
 }

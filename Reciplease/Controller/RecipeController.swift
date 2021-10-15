@@ -88,7 +88,7 @@ class RecipeController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func getDirection(_ sender: Any) {
-        if let url = URL(string: "\(recipeReceived!.imageUrl())") {
+        if let url = URL(string: "\(recipeReceived!.urlDirections())") {
             let safariVC = SFSafariViewController(url: url)
             present(safariVC, animated: true, completion: nil)
         }

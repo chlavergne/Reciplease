@@ -24,15 +24,7 @@ class SearchController: UIViewController {
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
         tabBarController?.hidesBottomBarWhenPushed = false
-        
-//        let request: NSFetchRequest<RecipeFavorite> = RecipeFavorite.fetchRequest()
-//                guard let recipeToDelete = try? AppDelegate.viewContext.fetch(request) else {
-//                    return
-//                }
-//                for object in recipeToDelete {
-//                    AppDelegate.viewContext.delete(object)
-//                    }
-//        try? AppDelegate.viewContext.save()
+//        delecteCDObject()
         }
     
     // MARK: - IBActions

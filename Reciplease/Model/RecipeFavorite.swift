@@ -17,6 +17,10 @@ class RecipeFavorite: NSManagedObject {
 }
 
 extension RecipeFavorite: RecipeProtocol {
+    func urlDirections() -> String {
+        return ""
+    }
+    
     func title() -> String {
         
         return savedName!

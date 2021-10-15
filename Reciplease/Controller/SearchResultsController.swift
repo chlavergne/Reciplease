@@ -62,9 +62,6 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
         let recipeResult = recipes[indexPath.row].recipe
-//        if RecipeFavorite.all .contains(recipeResult) {
-//            cell.favoriteStar.isHidden = false
-//        }
         cell.title.text = SearchResultsController(recipe: recipeResult).title()
         cell.calories.text = SearchResultsController(recipe: recipeResult).calories()
         cell.totalTime.text = SearchResultsController(recipe: recipeResult).totalTime()
@@ -94,6 +91,10 @@ extension UIViewController {
 }
 
 extension SearchResultsController: RecipeProtocol {
+    func urlDirections() -> String {
+        return recipe!.url
+    }
+    
     func isFavorite() -> Bool {
         return false
     }
