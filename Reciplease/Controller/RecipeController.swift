@@ -65,6 +65,7 @@ class RecipeController: UIViewController {
         savedRecipe.savedTotalTime = recipe.totalTime()
         savedRecipe.savedIngredients = recipe.ingredients()
         savedRecipe.savedIngredientLines = recipe.ingredientLines()
+        savedRecipe.savedDirectionUrl = recipe.urlDirections()
         savedRecipe.savedUrl = recipe.imageUrl()
         savedRecipe.savedIsFavorite = isFavorite!
         try? AppDelegate.viewContext.save()

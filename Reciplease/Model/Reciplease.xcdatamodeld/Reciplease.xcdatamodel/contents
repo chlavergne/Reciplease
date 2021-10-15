@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="RecipeFavorite" representedClassName=".RecipeFavorite" syncable="YES" codeGenerationType="category">
         <attribute name="savedCalories" optional="YES" attributeType="String"/>
+        <attribute name="savedDirectionUrl" optional="YES" attributeType="String"/>
         <attribute name="savedIngredientLines" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName=".[String]"/>
         <attribute name="savedIngredients" optional="YES" attributeType="String"/>
         <attribute name="savedIsFavorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -10,6 +11,6 @@
         <attribute name="savedUrl" optional="YES" attributeType="URI" defaultValueString="https://openclassrooms.com/fr"/>
     </entity>
     <elements>
-        <element name="RecipeFavorite" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="RecipeFavorite" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

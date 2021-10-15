@@ -38,8 +38,10 @@ class FavoriteController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        favoriteTableView.reloadData()
+        super.viewWillAppear(animated)
         self.favoriteList = RecipeFavorite.all
+        favoriteTableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
