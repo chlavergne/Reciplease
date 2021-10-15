@@ -12,7 +12,7 @@ import CoreData
 class SearchController: UIViewController {
     
     // MARK: - Propertie
-    var recipesLoaded: [Recipes] = []
+    var recipesLoaded: [Recipe] = []
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -61,6 +61,7 @@ class SearchController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SearchResultsController{
             controller.recipes = self.recipesLoaded
+            controller.showFavorite = false
         }
     }
 }

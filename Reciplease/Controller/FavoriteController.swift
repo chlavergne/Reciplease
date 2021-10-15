@@ -14,8 +14,8 @@ class FavoriteController: UIViewController {
     
     // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
-    static var recipeToSend: RecipeProtocol?
-    private var favoriteList: [RecipeProtocol] = RecipeFavorite.all
+    private var selectedRecipe: Recipe?
+    private var favoriteList: [Recipe] = RecipeCoreData.all
     
     // MARK: - IBOutlet
     @IBOutlet weak var favoriteTableView: UITableView!
@@ -28,7 +28,7 @@ class FavoriteController: UIViewController {
         favoriteTableView.separatorColor = UIColor.clear
         favoriteTableView.reloadData()
         
-        let request: NSFetchRequest<RecipeFavorite> = RecipeFavorite.fetchRequest()
+        let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
                 guard let recipeToDelete = try? AppDelegate.viewContext.fetch(request) else {
                     return
                 }
@@ -39,14 +39,14 @@ class FavoriteController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.favoriteList = RecipeFavorite.all
+        self.favoriteList = RecipeCoreData.all
         favoriteTableView.reloadData()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? RecipeController{
-            controller.recipeReceived = FavoriteController.recipeToSend
+        if let controller = segue.destination as? RecipeController, let recipe = selectedRecipe {
+            controller.recipe = recipe
         }
     }
 }
@@ -64,20 +64,19 @@ extension FavoriteController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteController.recipeCellId, for: indexPath) as! RecipeTableViewCell
        let recipeResult = favoriteList[indexPath.row]
         
-        cell.title.text = recipeResult.title()
-        cell.calories.text = recipeResult.calories()
-        cell.totalTime.text = recipeResult.totalTime()
-        cell.subtitle.text = recipeResult.ingredients()
+        cell.title.text = recipeResult.title
+        cell.calories.text = recipeResult.displayableCalories
+        cell.totalTime.text = recipeResult.displayableTotalTime
+        cell.subtitle.text = recipeResult.displayableIngredients
         cell.favoriteStar.isHidden = false
-        let urlToLoad = recipeResult.imageUrl()
+        let urlToLoad = recipeResult.imageUrl
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeSelected = favoriteList[indexPath.row]
-        FavoriteController.recipeToSend = recipeSelected
+        selectedRecipe = favoriteList[indexPath.row]
         self.performSegue(withIdentifier: "ShowFavoriteRecipeDetail", sender: nil)
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 func delecteCDObject() {
-    let request: NSFetchRequest<RecipeFavorite> = RecipeFavorite.fetchRequest()
+    let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
                     guard let recipeToDelete = try? AppDelegate.viewContext.fetch(request) else {
                         return
                     }

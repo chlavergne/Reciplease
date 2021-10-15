@@ -14,8 +14,8 @@ import CoreData
 class RecipeController: UIViewController {
     
     // MARK: - Propertie
-    var recipeReceived: RecipeProtocol?
-    var isFavorite: Bool?
+    var recipe: Recipe!
+    var isFavorite = false
 
     // MARK: - IBOutlets
     @IBOutlet weak var mainRecipeText: UILabel!
@@ -28,13 +28,12 @@ class RecipeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeTableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
-        mainRecipeText.text = recipeReceived!.title()
-        mainCalories.text = recipeReceived!.calories()
-        mainTime.text = recipeReceived!.totalTime()
-        let url = recipeReceived!.imageUrl()
-        isFavorite = recipeReceived!.isFavorite()
+        mainRecipeText.text = recipe.title
+        mainCalories.text = recipe.displayableCalories
+        mainTime.text = recipe!.displayableTotalTime
+        let url = recipe.imageUrl
+        isFavorite = recipe.isFavorite ?? false
         setFavorite()
-        print(isFavorite!)
         mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"), options: .continueInBackground,completed: nil)
         recipeTableView.reloadData()
         
@@ -48,7 +47,7 @@ class RecipeController: UIViewController {
         if isFavorite == false {
             isFavorite = true
             setFavorite()
-            addToFavorite(recipe: recipeReceived!)
+            addToFavorite(recipe: recipe!)
            
         } else {
             isFavorite = false
@@ -58,22 +57,13 @@ class RecipeController: UIViewController {
         }
     }
     
-    private func addToFavorite(recipe: RecipeProtocol) {
-        let savedRecipe = RecipeFavorite(context: AppDelegate.viewContext)
-        savedRecipe.savedName = recipe.title()
-        savedRecipe.savedCalories = recipe.calories()
-        savedRecipe.savedTotalTime = recipe.totalTime()
-        savedRecipe.savedIngredients = recipe.ingredients()
-        savedRecipe.savedIngredientLines = recipe.ingredientLines()
-        savedRecipe.savedDirectionUrl = recipe.urlDirections()
-        savedRecipe.savedUrl = recipe.imageUrl()
-        savedRecipe.savedIsFavorite = isFavorite!
-        try? AppDelegate.viewContext.save()
+    private func addToFavorite(recipe: Recipe) {
+        RecipeCoreData.insert(recipe: recipe)
         
     }
     
     private func removeFromFavorite() {
-        AppDelegate.viewContext.delete(recipeReceived! as! NSManagedObject)
+        AppDelegate.viewContext.delete(recipe! as! NSManagedObject)
         try? AppDelegate.viewContext.save()
     }
     
@@ -89,7 +79,7 @@ class RecipeController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func getDirection(_ sender: Any) {
-        if let url = URL(string: "\(recipeReceived!.urlDirections())") {
+        if let url = URL(string: recipe.url) {
             let safariVC = SFSafariViewController(url: url)
             present(safariVC, animated: true, completion: nil)
         }
@@ -103,13 +93,13 @@ extension RecipeController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let totalCell = recipeReceived!.ingredientLines().count
+        let totalCell = recipe.ingredientLines.count
         return totalCell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientLineCell", for: indexPath)
-        let ingredient = recipeReceived!.ingredientLines()[indexPath.row]
+        let ingredient = recipe.ingredientLines[indexPath.row]
         cell.textLabel?.text = ingredient
         return cell
     }

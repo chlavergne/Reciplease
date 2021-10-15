@@ -12,20 +12,12 @@ import CoreData
 class SearchResultsController: UIViewController {
     
     // MARK: - Properties
-    static var recipeToSend: RecipeProtocol?
     
     static let recipeCellId = "RecipeTableViewCell"
-    var recipes: [Recipes] = []
-    private var recipe: Recipe?
+    var showFavorite = true
+    var recipes: [Recipe] = []
+    private var selectedRecipe: Recipe?
     
-    init(recipe: Recipe) {
-        self.recipe = recipe
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
@@ -40,12 +32,15 @@ class SearchResultsController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if showFavorite == true {
+            recipes = RecipeCoreData.all
+        }
         recipesTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? RecipeController{
-            controller.recipeReceived = SearchResultsController.recipeToSend
+        if let controller = segue.destination as? RecipeController, let recipe = selectedRecipe {
+            controller.recipe = recipe
         }
     }
 }
@@ -61,22 +56,22 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
-        let recipeResult = recipes[indexPath.row].recipe
-        cell.title.text = SearchResultsController(recipe: recipeResult).title()
-        cell.calories.text = SearchResultsController(recipe: recipeResult).calories()
-        cell.totalTime.text = SearchResultsController(recipe: recipeResult).totalTime()
-        cell.subtitle.text = SearchResultsController(recipe: recipeResult).ingredients()
-        let urlToLoad = SearchResultsController(recipe: recipeResult).imageUrl()
+        let recipeResult = recipes[indexPath.row]
+        
+        cell.title.text = recipeResult.label
+        cell.calories.text = recipeResult.displayableCalories
+        cell.totalTime.text = recipeResult.displayableTotalTime
+        cell.subtitle.text = recipeResult.displayableIngredients
+        let urlToLoad = recipeResult.imageUrl
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
-        cell.favoriteStar.isHidden = !SearchResultsController(recipe: recipeResult).isFavorite()
+        cell.favoriteStar.isHidden = !(recipeResult.isFavorite ?? false)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeSelected = recipes[indexPath.row].recipe
-        SearchResultsController.recipeToSend = SearchResultsController(recipe: recipeSelected)
+        self.selectedRecipe = recipes[indexPath.row]
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }
@@ -87,59 +82,5 @@ extension UIViewController {
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
-    }
-}
-
-extension SearchResultsController: RecipeProtocol {
-    func urlDirections() -> String {
-        return recipe!.url
-    }
-    
-    func isFavorite() -> Bool {
-        return false
-    }
-    
-    func ingredientLines() -> [String] {
-        let ingredientLines = recipe!.ingredientLines
-        return ingredientLines
-    }
-    
-    
-    func ingredients() -> String {
-        var joinedList = ""
-        let ingredients = recipe!.ingredients
-        let ingredientCount = ingredients.count
-        var ingredientList: [String] = []
-        
-        for i in 0..<ingredientCount {
-            ingredientList.append(ingredients[i].food)
-            let capitalizedList = ingredientList.map { $0.capitalized }
-            joinedList = capitalizedList.joined(separator: ",")
-        }
-        return joinedList
-    }
-    
-    func title() -> String {
-        return recipe!.label
-    }
-    
-    func calories() -> String {
-        let caloriesFormat = String(format: "%.0f", recipe!.calories)
-        return "\(caloriesFormat) Cal"
-    }
-    
-    func imageUrl() -> URL {
-        let url = URL(string:recipe!.image)
-        return url!
-    }
-    
-    func totalTime() -> String {
-        let formatedTime: String
-        if String(recipe!.totalTime) == "0" {
-            formatedTime = "-- m"
-        } else {
-            formatedTime = "\(recipe!.totalTime) m"
-        }
-        return formatedTime
     }
 }
