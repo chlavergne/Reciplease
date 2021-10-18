@@ -13,7 +13,7 @@ class SearchResultsController: UIViewController {
     
     // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
-    var showFavorite = true)
+    var showFavorite = true
     var recipes: [Recipe] = []
     var recipesAfterDelete: [Recipe] = []
     private var index = 0

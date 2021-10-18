@@ -15,8 +15,6 @@
 		D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D550E357270CBC8D00E54416 /* Reciplease.xcdatamodeld */; };
 		D550E35B270CBC8F00E54416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D550E35A270CBC8F00E54416 /* Assets.xcassets */; };
 		D550E35E270CBC8F00E54416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D550E35C270CBC8F00E54416 /* LaunchScreen.storyboard */; };
-		D550E36E270CE56100E54416 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36D270CE56100E54416 /* TabBarController.swift */; };
-		D550E370270CE84100E54416 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E36F270CE84100E54416 /* FavoriteController.swift */; };
 		D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E371270DA0E400E54416 /* SearchResultsController.swift */; };
 		D550E374270DAB9600E54416 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E373270DAB9600E54416 /* RecipeController.swift */; };
 		D550E378270DCDC800E54416 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550E377270DCDC800E54416 /* IngredientService.swift */; };
@@ -42,8 +40,6 @@
 		D550E35A270CBC8F00E54416 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D550E35D270CBC8F00E54416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D550E35F270CBC8F00E54416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D550E36D270CE56100E54416 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D550E36F270CE84100E54416 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		D550E371270DA0E400E54416 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		D550E373270DAB9600E54416 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		D550E377270DCDC800E54416 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
@@ -134,9 +130,7 @@
 		D550E369270CD06C00E54416 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D550E36D270CE56100E54416 /* TabBarController.swift */,
 				D550E352270CBC8D00E54416 /* SearchController.swift */,
-				D550E36F270CE84100E54416 /* FavoriteController.swift */,
 				D550E371270DA0E400E54416 /* SearchResultsController.swift */,
 				D550E373270DAB9600E54416 /* RecipeController.swift */,
 			);
@@ -291,7 +285,6 @@
 			files = (
 				D550E359270CBC8D00E54416 /* Reciplease.xcdatamodeld in Sources */,
 				D5BD646F271963360053EB69 /* TemporyFileDeleteCDObject.swift in Sources */,
-				D550E370270CE84100E54416 /* FavoriteController.swift in Sources */,
 				D550E383270E36B300E54416 /* RecipeTableViewCell.swift in Sources */,
 				D550E3882711B8BD00E54416 /* CustomView.swift in Sources */,
 				D5CD82532715B3630076D80C /* RecipeCoreData.swift in Sources */,
@@ -300,7 +293,6 @@
 				D550E372270DA0E400E54416 /* SearchResultsController.swift in Sources */,
 				D550E37C270E1A1500E54416 /* Api.swift in Sources */,
 				D550E37E270E20A100E54416 /* RecipeService.swift in Sources */,
-				D550E36E270CE56100E54416 /* TabBarController.swift in Sources */,
 				D550E378270DCDC800E54416 /* IngredientService.swift in Sources */,
 				D550E374270DAB9600E54416 /* RecipeController.swift in Sources */,
 				D550E34F270CBC8D00E54416 /* AppDelegate.swift in Sources */,
