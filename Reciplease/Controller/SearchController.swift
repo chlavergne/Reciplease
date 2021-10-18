@@ -45,7 +45,6 @@ class SearchController: UIViewController {
     
     @IBAction func loadRecipes(_ sender: Any) {
         loadingIndicator.startAnimating()
-    print(IngredientService.shared.ingredients)
         RecipeService.shared.fetchJSON {(error, recipeList) in
             self.loadingIndicator.stopAnimating()
             self.recipesLoaded = recipeList ?? []
@@ -61,6 +60,7 @@ class SearchController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SearchResultsController{
             controller.recipes = self.recipesLoaded
+            controller.recipesAfterDelete = self.recipesLoaded
             controller.showFavorite = false
         }
     }

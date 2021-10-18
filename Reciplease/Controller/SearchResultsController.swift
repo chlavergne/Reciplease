@@ -13,9 +13,11 @@ class SearchResultsController: UIViewController {
     
     // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
-    var showFavorite = true
+    var showFavorite = true)
     var recipes: [Recipe] = []
+    var recipesAfterDelete: [Recipe] = []
     private var index = 0
+    var isFavorite = false
     private var selectedRecipe: Recipe?
     
     // MARK: - IBOutlet
@@ -33,6 +35,9 @@ class SearchResultsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if showFavorite == true {
             recipes = RecipeCoreData.all
+        } else {
+            recipes = recipesAfterDelete
+            
         }
         recipesTableView.reloadData()
     }
@@ -41,6 +46,7 @@ class SearchResultsController: UIViewController {
         if let controller = segue.destination as? RecipeController, let recipe = selectedRecipe {
             controller.recipe = recipe
             controller.row = index
+            controller.isFavorite = isFavorite
         }
     }
 }
@@ -65,13 +71,26 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         let urlToLoad = recipeResult.imageUrl
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
-        cell.favoriteStar.isHidden = !(recipeResult.isFavorite ?? false)
+        cell.favoriteStar.isHidden = true
+        let savedRecipe = RecipeCoreData.all.map({$0.title})
+        if savedRecipe.contains(recipeResult.label) {
+            cell.favoriteStar.isHidden = false
+            
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
-        index = indexPath.row
+        let savedRecipe = RecipeCoreData.all.map({$0.title})
+        if savedRecipe.contains(self.selectedRecipe!.title) {
+            isFavorite = true
+            index = savedRecipe.firstIndex(of: self.selectedRecipe!.title) ?? 0
+            recipes = RecipeCoreData.all
+        } else {
+            isFavorite = false
+        }
+        print(isFavorite)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }

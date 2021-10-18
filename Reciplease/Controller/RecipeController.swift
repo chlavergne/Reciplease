@@ -33,7 +33,6 @@ class RecipeController: UIViewController {
         mainCalories.text = recipe.displayableCalories
         mainTime.text = recipe!.displayableTotalTime
         let url = recipe.imageUrl
-        isFavorite = recipe.isFavorite ?? false
         setFavorite()
         mainRecipeImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: "generique2"),
                                     options: .continueInBackground,completed: nil)
@@ -73,7 +72,7 @@ class RecipeController: UIViewController {
             favoriSelector.setImage(unselectedImage, for: .normal)
         }
     }
-    
+  
     // MARK: - IBAction
     @IBAction func getDirection(_ sender: Any) {
         if let url = URL(string: recipe.url) {
