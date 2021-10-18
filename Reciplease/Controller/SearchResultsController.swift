@@ -90,7 +90,6 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         } else {
             isFavorite = false
         }
-        print(isFavorite)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }
