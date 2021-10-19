@@ -24,8 +24,8 @@ class SearchController: UIViewController {
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
         tabBarController?.hidesBottomBarWhenPushed = false
-//        delecteCDObject()
-        }
+        //        delecteCDObject()
+    }
     
     // MARK: - IBActions
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -45,15 +45,23 @@ class SearchController: UIViewController {
     
     @IBAction func loadRecipes(_ sender: Any) {
         loadingIndicator.startAnimating()
-        RecipeService.shared.fetchJSON {(error, recipeList) in
-            self.loadingIndicator.stopAnimating()
-            self.recipesLoaded = recipeList ?? []
-            if self.recipesLoaded.count > 0 {
+        RecipeService.shared.fetchJSON (callback: { result in
+            switch result {
+            case .success(let recipes):
+                self.loadingIndicator.stopAnimating()
+                self.recipesLoaded = recipes
                 self.performSegue(withIdentifier: "ShowRecipes", sender: nil)
-            } else {
-                self.presentAlert(error: error?.localizedDescription ?? "Erreur de chargement")
+            case .failure(let error):
+                switch error {
+                case .noData:
+                    self.presentAlert(error: "No data received from the distant server")
+                case .invalidResponse:
+                    self.presentAlert(error: "Statut code error")
+                case.undecodableData:
+                    self.presentAlert(error: "Failure while trying to decode response")
+                }
             }
-        }
+        })
     }
     
     // MARK: - Method
@@ -101,10 +109,11 @@ extension SearchController: UITableViewDelegate {
     }
 }
 
-//extension NSLayoutConstraint {
-//
-//    override public var description: String {
-//        let id = identifier ?? ""
-//        return "id: \(id), constant: \(constant)" //you may print whatever you want here
-//    }
-//}
+extension UIViewController {
+    func presentAlert(error: String) {
+        let alert = UIAlertController(title: "Erreur", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+}

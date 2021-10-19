@@ -93,12 +93,3 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 }
-
-extension UIViewController {
-    func presentAlert(error: String) {
-        let alert = UIAlertController(title: "Erreur", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-}
