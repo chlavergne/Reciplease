@@ -224,6 +224,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" identifier="id40" id="xFm-vF-AHG"/>
                                 </constraints>
+                                <color key="tintColor" red="0.33333333333333331" green="0.60392156862745094" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Get Directions">
                                     <fontDescription key="titleFontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="25"/>
