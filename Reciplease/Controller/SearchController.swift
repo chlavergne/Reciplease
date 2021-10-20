@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Foundation
 import CoreData
 
 class SearchController: UIViewController {
     
     // MARK: - Propertie
-    var recipesLoaded: [Recipe] = []
+    private var recipesLoaded: [Recipe] = []
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -24,7 +23,6 @@ class SearchController: UIViewController {
         tableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         searchBar.delegate = self
         tabBarController?.hidesBottomBarWhenPushed = false
-        //        delecteCDObject()
     }
     
     // MARK: - IBActions
@@ -106,14 +104,5 @@ extension SearchController: UITableViewDelegate {
             IngredientService.shared.ingredients.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-    }
-}
-
-extension UIViewController {
-    func presentAlert(error: String) {
-        let alert = UIAlertController(title: "Erreur", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
 }

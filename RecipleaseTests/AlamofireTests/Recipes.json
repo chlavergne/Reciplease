@@ -1,0 +1,116 @@
+{
+    "from": 1,
+    "to": 20,
+    "count": 10000,
+    "_links": {
+        "next": {
+            "href": "https://api.edamam.com/api/recipes/v2?q=cheese&app_key=xxxxxxxx&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtAgYHR2ZHAmEQZF16BAUFUXlSV2IbMAAmVgcBEWYWAWoaY1d7DApRSmJJAGoRMQR2AgYVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=xxxxxxx",
+            "title": "Next page"
+        }
+    },
+    "hits": [
+        {
+            "recipe": {
+                "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_6e7e7bbcb4ae4c2fc76226c0718d0fc2",
+                "label": "Strong Cheese",
+                "image": "https://www.edamam.com/web-img/53c/53ca837dcd939671920e6ab70ad723a6.jpg",
+                "source": "Not Without Salt",
+                "url": "http://notwithoutsalt.com/strong-cheese/",
+                "shareAs": "http://www.edamam.com/recipe/strong-cheese-6e7e7bbcb4ae4c2fc76226c0718d0fc2/cheese",
+                "yield": 8.0,
+                "dietLabels": [
+                    "Low-Carb"
+                ],
+                "healthLabels": [
+                    "Sugar-Conscious",
+                    "Low Potassium",
+                    "Keto-Friendly",
+                    "Vegetarian",
+                    "Pescatarian",
+                    "Gluten-Free",
+                    "Wheat-Free",
+                    "Egg-Free",
+                    "Peanut-Free",
+                    "Tree-Nut-Free",
+                    "Soy-Free",
+                    "Fish-Free",
+                    "Shellfish-Free",
+                    "Pork-Free",
+                    "Red-Meat-Free",
+                    "Crustacean-Free",
+                    "Celery-Free",
+                    "Mustard-Free",
+                    "Sesame-Free",
+                    "Lupine-Free",
+                    "Mollusk-Free",
+                    "Kosher"
+                ],
+                "cautions": [
+                    "Sulfites"
+                ],
+                "ingredientLines": [
+                    "1 lb left-over cheese, at room temperature",
+                    "1/4 cup dry white wine",
+                    "3 tbsp unsalted butter, softened",
+                    "2 tbsp fresh parsley leaves",
+                    "1 small clove garlic"
+                ],
+                "ingredients": [
+                    {
+                        "text": "1 lb left-over cheese, at room temperature",
+                        "quantity": 1.0,
+                        "measure": "pound",
+                        "food": "cheese",
+                        "weight": 453.59237,
+                        "foodCategory": "Cheese",
+                        "foodId": "food_bhppgmha1u27voagb8eptbp9g376",
+                        "image": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg"
+                    },
+                    {
+                        "text": "1/4 cup dry white wine",
+                        "quantity": 0.25,
+                        "measure": "cup",
+                        "food": "dry white wine",
+                        "weight": 58.8,
+                        "foodCategory": "wines",
+                        "foodId": "food_a656mk2a5dmqb2adiamu6beihduu",
+                        "image": "https://www.edamam.com/food-img/a71/a718cf3c52add522128929f1f324d2ab.jpg"
+                    },
+                    {
+                        "text": "3 tbsp unsalted butter, softened",
+                        "quantity": 3.0,
+                        "measure": "tablespoon",
+                        "food": "unsalted butter",
+                        "weight": 42.599999999999994,
+                        "foodCategory": "Dairy",
+                        "foodId": "food_awz3iefajbk1fwahq9logahmgltj",
+                        "image": "https://www.edamam.com/food-img/713/71397239b670d88c04faa8d05035cab4.jpg"
+                    },
+                    {
+                        "text": "2 tbsp fresh parsley leaves",
+                        "quantity": 2.0,
+                        "measure": "tablespoon",
+                        "food": "parsley",
+                        "weight": 7.6,
+                        "foodCategory": "vegetables",
+                        "foodId": "food_b244pqdazw24zobr5vqu2bf0uid8",
+                        "image": "https://www.edamam.com/food-img/46a/46a132e96626d7989b4d6ed8c91f4da0.jpg"
+                    },
+                    {
+                        "text": "1 small clove garlic",
+                        "quantity": 1.0,
+                        "measure": "clove",
+                        "food": "garlic",
+                        "weight": 2.25,
+                        "foodCategory": "vegetables",
+                        "foodId": "food_avtcmx6bgjv1jvay6s6stan8dnyp",
+                        "image": "https://www.edamam.com/food-img/6ee/6ee142951f48aaf94f4312409f8d133d.jpg"
+                    }
+                ],
+                "calories": 2201.3315221999997,
+                "totalWeight": 564.8423700000001,
+                "totalTime": 0.0,
+            }
+        }
+    ]
+}

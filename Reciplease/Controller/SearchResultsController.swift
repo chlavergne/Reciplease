@@ -6,19 +6,19 @@
 //
 
 import UIKit
-import Foundation
 import SDWebImage
 import CoreData
+
 class SearchResultsController: UIViewController {
     
     // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
+    private var index = 0
+    private var isFavorite = false
+    private var selectedRecipe: Recipe?
     var showFavorite = true
     var recipes: [Recipe] = []
     var recipesAfterDelete: [Recipe] = []
-    private var index = 0
-    var isFavorite = false
-    private var selectedRecipe: Recipe?
     
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!

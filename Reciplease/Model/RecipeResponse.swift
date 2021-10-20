@@ -26,7 +26,6 @@ struct Recipe: Decodable {
     let ingredients: [Ingredient]
 
     var isFavorite: Bool?
-    
     var displayableIngredients: String {
         var joinedList = ""
         let ingredients = ingredients
@@ -68,4 +67,3 @@ struct Recipe: Decodable {
 struct Ingredient: Codable {
     let food: String
 }
-

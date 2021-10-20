@@ -15,21 +15,26 @@ enum ErrorCases: Error {
     case undecodableData
 }
 
-class RecipeService {
+final class RecipeService {
     
     // MARK: - Properties
     static let shared = RecipeService()
     
-    private init() {}
+    private let session: AlamofireSession
+    
+    // MARK: - Initializer
+    init(session: AlamofireSession = RecipeSession()) {
+        self.session = session
+    }
     
     // MARK: - Method
     func fetchJSON(callback: @escaping (Result<[Recipe], ErrorCases>) -> Void) {
         let urlShort = "https://api.edamam.com/api/recipes/v2"
         let ingredients = IngredientService.shared.ingredients.joined(separator: ",")
-        let url = "\(urlShort)?q=\(ingredients)&app_id=\(Api().appId)&app_key=\(Api().appKey)&type=public"
-        let request = AF.request(url)
-        request.responseDecodable(of: RecipeResponse.self) { (response) in
-            guard response.data != nil else {
+        let urlString = "\(urlShort)?q=\(ingredients)&app_id=\(Api().appId)&app_key=\(Api().appKey)&type=public"
+        let url = URL(string: urlString)
+        session.request(url: url!) { (response) in
+            guard let data = response.data else {
                 callback(.failure(.noData))
                 return
             }
@@ -37,10 +42,11 @@ class RecipeService {
                 callback(.failure(.invalidResponse))
                 return
             }
-            guard let recipeList = response.value?.hits else {
+            guard let dataDecoded = try? JSONDecoder().decode(RecipeResponse.self, from: data) else {
                 callback(.failure(.undecodableData))
                 return
             }
+            let recipeList = dataDecoded.hits
             let recipes = recipeList.map { recipe in
                 recipe.recipe
             }

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class RecipeCoreData: NSManagedObject {
+open class RecipeCoreData: NSManagedObject {
     
     private static let context = AppDelegate.viewContext
     

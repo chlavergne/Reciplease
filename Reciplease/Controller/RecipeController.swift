@@ -5,7 +5,7 @@
 //  Created by Christophe Expleo on 06/10/2021.
 //
 
-import Foundation
+
 import UIKit
 import SDWebImage
 import SafariServices
