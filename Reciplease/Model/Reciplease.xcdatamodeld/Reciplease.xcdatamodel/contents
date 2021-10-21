@@ -10,6 +10,6 @@
         <attribute name="totalTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="RecipeCoreData" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="RecipeCoreData" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

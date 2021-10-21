@@ -17,6 +17,7 @@ class RecipeController: UIViewController {
     var recipe: Recipe!
     var isFavorite = false
     var row = 0
+    let coreDataStack =  CoreDataStack(modelName: "Reciplease")
     
     // MARK: - IBOutlets
     @IBOutlet weak var mainRecipeText: UILabel!
@@ -56,11 +57,11 @@ class RecipeController: UIViewController {
     }
     
     private func addToFavorite(recipe: Recipe) {
-        RecipeCoreData.insert(recipe: recipe)
+        CoreDataManager(coreDataStack: coreDataStack).insert(recipe: recipe)
     }
     
     private func removeFromFavorite(recipe: Recipe) {
-        RecipeCoreData.remove(recipe: recipe, row: row)
+        CoreDataManager(coreDataStack: coreDataStack).remove(recipe: recipe, row: row)
     }
     
     private func setFavorite() {

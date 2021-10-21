@@ -12,6 +12,7 @@ import CoreData
 class SearchResultsController: UIViewController {
     
     // MARK: - Properties
+    private var coreDataManager: CoreDataManager?
     static let recipeCellId = "RecipeTableViewCell"
     private var index = 0
     private var isFavorite = false
@@ -25,7 +26,9 @@ class SearchResultsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let coredataStack = appdelegate.coreDataStack
+        coreDataManager = CoreDataManager(coreDataStack: coredataStack)
         // Register Cell
         recipesTableView.register(UINib.init(nibName: SearchResultsController.recipeCellId, bundle: nil),
                                   forCellReuseIdentifier: SearchResultsController.recipeCellId)
@@ -34,7 +37,7 @@ class SearchResultsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if showFavorite == true {
-            recipes = RecipeCoreData.all
+            recipes = coreDataManager!.savedRecipe
         } else {
             recipes = recipesAfterDelete
             
@@ -72,7 +75,7 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
         cell.favoriteStar.isHidden = true
-        let savedRecipe = RecipeCoreData.all.map({$0.title})
+        let savedRecipe = coreDataManager!.savedRecipe.map({$0.title})
         if savedRecipe.contains(recipeResult.label) {
             cell.favoriteStar.isHidden = false
             
@@ -82,11 +85,11 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
-        let savedRecipe = RecipeCoreData.all.map({$0.title})
+        let savedRecipe = coreDataManager!.savedRecipe.map({$0.title})
         if savedRecipe.contains(self.selectedRecipe!.title) {
             isFavorite = true
             index = savedRecipe.firstIndex(of: self.selectedRecipe!.title) ?? 0
-            recipes = RecipeCoreData.all
+            recipes = coreDataManager!.savedRecipe
         } else {
             isFavorite = false
         }
