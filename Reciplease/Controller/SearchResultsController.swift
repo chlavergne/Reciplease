@@ -61,6 +61,11 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.recipes.count == 0 {
+            recipesTableView.setNoDataPlaceholder("Your favorites list is empty, add a recipe")
+        } else {
+            recipesTableView.removeNoDataPlaceholder()
+        }
         return self.recipes.count
     }
     
@@ -78,7 +83,6 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         let savedRecipe = coreDataManager!.savedRecipe.map({$0.title})
         if savedRecipe.contains(recipeResult.label) {
             cell.favoriteStar.isHidden = false
-            
         }
         return cell
     }

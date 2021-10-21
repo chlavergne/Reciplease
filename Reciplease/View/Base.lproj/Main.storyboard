@@ -192,6 +192,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="7Uo-J8-57o">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="HbU-aA-7kp" id="fab-0w-8Ay"/>
                             <outlet property="delegate" destination="HbU-aA-7kp" id="q7U-wd-iZ2"/>
@@ -431,7 +436,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lzl-s8-Zpn"/>
+        <segue reference="UEw-s2-dOw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
