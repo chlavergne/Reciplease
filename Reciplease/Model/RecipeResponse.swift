@@ -17,7 +17,7 @@ struct ApiRecipe: Decodable {
 }
 
 struct Recipe: Decodable {
-    let label: String
+    var label: String
     let image: String
     let url: String
     let ingredientLines: [String]
@@ -50,7 +50,7 @@ struct Recipe: Decodable {
     
     var imageUrl: URL {
         let url = URL(string: image)
-        return url!
+        return url ?? URL(string: "www.default.com")!
     }
     
     var displayableTotalTime: String {
@@ -66,4 +66,17 @@ struct Recipe: Decodable {
 
 struct Ingredient: Codable {
     let food: String
+}
+
+extension Recipe {
+    init(testValue: String) {
+        label = testValue
+        image = ""
+        url = "www.test.com"
+        ingredientLines = []
+        totalTime = 0
+        calories = 0
+        ingredients =  []
+        isFavorite =  false
+    }
 }

@@ -8,5 +8,4 @@ end
 
 target 'RecipleaseTests' do
   pod 'Alamofire', '5.4.4'
-  pod 'SDWebImage'
 end

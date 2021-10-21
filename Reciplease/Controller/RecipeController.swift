@@ -13,11 +13,11 @@ import CoreData
 
 class RecipeController: UIViewController {
     
-    // MARK: - Propertie
+    // MARK: - Properties
+    private var coreDataManager: CoreDataManager?
     var recipe: Recipe!
     var isFavorite = false
     var row = 0
-    let coreDataStack =  CoreDataStack(modelName: "Reciplease")
     
     // MARK: - IBOutlets
     @IBOutlet weak var mainRecipeText: UILabel!
@@ -29,6 +29,9 @@ class RecipeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let coredataStack = appdelegate.coreDataStack
+        coreDataManager = CoreDataManager(coreDataStack: coredataStack)
         recipeTableView.backgroundView = UIImageView(image: UIImage(named: "ardoise"))
         mainRecipeText.text = recipe.title
         mainCalories.text = recipe.displayableCalories
@@ -57,11 +60,11 @@ class RecipeController: UIViewController {
     }
     
     private func addToFavorite(recipe: Recipe) {
-        CoreDataManager(coreDataStack: coreDataStack).insert(recipe: recipe)
+        coreDataManager!.insert(recipe: recipe)
     }
     
     private func removeFromFavorite(recipe: Recipe) {
-        CoreDataManager(coreDataStack: coreDataStack).remove(recipe: recipe, row: row)
+        coreDataManager!.remove(recipe: recipe, row: row)
     }
     
     private func setFavorite() {

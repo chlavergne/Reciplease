@@ -10,18 +10,24 @@ import CoreData
 @testable import Reciplease
 
 class MockCoreDataStack: CoreDataStack {
-    
-    // MARK: - Initialization
-    
+
+    // MARK: - Initializer
+
     convenience init() {
         self.init(modelName: "Reciplease")
     }
-    
+
     override init(modelName: String) {
         super.init(modelName: modelName)
-        
-        let desc = NSPersistentStoreDescription()
-        desc.type = NSInMemoryStoreType
-        self.persistentContainer.persistentStoreDescriptions = [desc]
+        let persistentStoreDescription = NSPersistentStoreDescription()
+        persistentStoreDescription.type = NSInMemoryStoreType
+        let container = NSPersistentContainer(name: modelName)
+        container.persistentStoreDescriptions = [persistentStoreDescription]
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        self.persistentContainer = container
     }
 }
