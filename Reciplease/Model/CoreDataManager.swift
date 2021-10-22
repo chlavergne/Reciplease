@@ -15,7 +15,10 @@ open class CoreDataManager {
     
     var savedRecipe: [Recipe] {
         let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
-        guard let savedRecipe = try? managedObjectContext.fetch(request) else { return [] }
+        var savedRecipe: [RecipeCoreData] = []
+        if let recipe = try? managedObjectContext.fetch(request) {
+            savedRecipe = recipe
+        }
         let recipes = savedRecipe.map { coreDataManager in
             coreDataManager.model
                }
@@ -42,12 +45,12 @@ open class CoreDataManager {
     func remove(recipe: Recipe, row: Int) {
         let itemIDsFetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "RecipeCoreData")
         itemIDsFetchRequest.resultType = .managedObjectIDResultType
-        do {
-            let ids = try managedObjectContext.fetch(itemIDsFetchRequest)
-            let recipeToDelete = try managedObjectContext.existingObject(with: ids[row])
+//        do {
+        if let ids = try? managedObjectContext.fetch(itemIDsFetchRequest),
+           let recipeToDelete = try? managedObjectContext.existingObject(with: ids[row]) {
             managedObjectContext.delete(recipeToDelete)
-        }catch let error as NSError {
-            print("Fetch item failed:\(error), \(error.userInfo)")
+//        }catch let error as NSError {
+//            print("Fetch item failed:\(error), \(error.userInfo)")
         }
         coreDataStack.saveContext()
     }

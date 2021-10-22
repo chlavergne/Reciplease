@@ -22,6 +22,7 @@ class IngredientService {
     
     func removeIngredient() {
         if ingredients.count > 0 {
-            ingredients.removeLast()} else {return}
+            ingredients.removeLast()
+        } 
     }
 }

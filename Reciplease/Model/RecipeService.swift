@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-enum ErrorCases: Error {
+enum ErrorCase: Error {
     case noData
     case invalidResponse
     case undecodableData
@@ -28,7 +28,7 @@ final class RecipeService {
     }
     
     // MARK: - Method
-    func fetchJSON(callback: @escaping (Result<[Recipe], ErrorCases>) -> Void) {
+    func fetchJSON(callback: @escaping (Result<[Recipe], ErrorCase>) -> Void) {
         let urlShort = "https://api.edamam.com/api/recipes/v2"
         let ingredients = IngredientService.shared.ingredients.joined(separator: ",")
         let urlString = "\(urlShort)?q=\(ingredients)&app_id=\(Api().appId)&app_key=\(Api().appKey)&type=public"

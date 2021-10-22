@@ -11,22 +11,15 @@ import XCTest
 class RecipeResponsetests: XCTestCase {
     
     func testDisplayableCaloriesRoundedWithNoDecimalDigits() {
-        let recipeTest = Recipe(testValue: "Test to add a recipe")
-        XCTAssertEqual(recipeTest.displayableCalories,"13 Cal")
+        XCTAssertEqual(Recipe.mock1.displayableCalories,"13 Cal")
     }
     
     func testDisplayableTotalTimeReturnGoodFormat() {
-        var recipeTest = Recipe(testValue: "Test to add a recipe")
-        XCTAssertEqual(recipeTest.displayableTotalTime,"15.78 m")
-        recipeTest.totalTime = 0.0
-        XCTAssertEqual(recipeTest.displayableTotalTime,"-- m")
+        XCTAssertEqual(Recipe.mock1.displayableTotalTime,"15.78 m")
+        XCTAssertEqual(Recipe.mock2.displayableTotalTime,"-- m")
     }
     
     func testDisplayableIngredientsReturnGoodFormat() {
-        var recipeTest = Recipe(testValue: "Test to add a recipe")
-        let ingredient1 = Ingredient(testValue: "cheese")
-        let ingredient2 = Ingredient(testValue: "tomato")
-        recipeTest.ingredients = [ingredient1, ingredient2]
-        XCTAssertEqual(recipeTest.displayableIngredients,"Cheese,Tomato")
+        XCTAssertEqual(Recipe.mock1.displayableIngredients,"Tomato,Cheese")
     }
 }
