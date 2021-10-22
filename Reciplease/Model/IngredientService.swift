@@ -13,7 +13,7 @@ class IngredientService {
     var ingredients: [String] = []
     static let shared = IngredientService()
     
-    private init() {}
+    init() {}
     
     // MARK: - Methods
     func add(ingredient: String) {
