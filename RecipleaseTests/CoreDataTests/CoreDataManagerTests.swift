@@ -36,8 +36,6 @@ class CoreDataManagerTests: XCTestCase {
         let recipeTest = Recipe(testValue: "Test to add a recipe")
         XCTAssertTrue(coreDataManager.savedRecipe.isEmpty)
         coreDataManager.insert(recipe: recipeTest)
-        print(coreDataManager.savedRecipe)
-//        XCTAssertTrue(coreDataManager.savedRecipe.isEmpty)
         XCTAssertTrue(coreDataManager.savedRecipe.count == 1)
         XCTAssertTrue(coreDataManager.savedRecipe[0].title == "Test to add a recipe")
     }
@@ -45,6 +43,7 @@ class CoreDataManagerTests: XCTestCase {
     func testDeleteAllTasksMethod_WhenAnEntityIsCreated_ThenShouldBeCorrectlyDeleted() {
         let recipeTest = Recipe(testValue: "Test to add a recipe")
         coreDataManager.insert(recipe: recipeTest)
+        XCTAssertTrue(coreDataManager.savedRecipe.count == 1)
         coreDataManager.remove(recipe: recipeTest, row: 0)
         XCTAssertTrue(coreDataManager.savedRecipe.isEmpty)
     }

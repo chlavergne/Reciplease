@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class SearchController: UIViewController {
+final class SearchController: UIViewController {
     
     // MARK: - Propertie
     private var recipesLoaded: [Recipe] = []

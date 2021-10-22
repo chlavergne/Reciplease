@@ -21,10 +21,10 @@ struct Recipe: Decodable {
     let image: String
     let url: String
     let ingredientLines: [String]
-    let totalTime: Double
+    var totalTime: Double
     let calories: Double
-    let ingredients: [Ingredient]
-
+    var ingredients: [Ingredient]
+    
     var isFavorite: Bool?
     var displayableIngredients: String {
         var joinedList = ""
@@ -55,7 +55,7 @@ struct Recipe: Decodable {
     
     var displayableTotalTime: String {
         let formatedTime: String
-        if String(totalTime) == "0" {
+        if String(totalTime) == "0.0" {
             formatedTime = "-- m"
         } else {
             formatedTime = "\(totalTime) m"
@@ -66,17 +66,4 @@ struct Recipe: Decodable {
 
 struct Ingredient: Codable {
     let food: String
-}
-
-extension Recipe {
-    init(testValue: String) {
-        label = testValue
-        image = ""
-        url = "www.test.com"
-        ingredientLines = []
-        totalTime = 0
-        calories = 0
-        ingredients =  []
-        isFavorite =  false
-    }
 }

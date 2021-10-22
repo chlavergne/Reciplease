@@ -11,7 +11,7 @@ import SDWebImage
 import SafariServices
 import CoreData
 
-class RecipeController: UIViewController {
+final class RecipeController: UIViewController {
     
     // MARK: - Properties
     private var coreDataManager: CoreDataManager?
@@ -43,10 +43,19 @@ class RecipeController: UIViewController {
         recipeTableView.reloadData()
     }
     
+    // MARK: - IBActions
     @IBAction func favoriSelector(_ sender: Any) {
         switchFavoriteIcon()
     }
     
+    @IBAction func getDirection(_ sender: Any) {
+        if let url = URL(string: recipe.url) {
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Methods
     private func switchFavoriteIcon() {
         if isFavorite == false {
             isFavorite = true
@@ -74,14 +83,6 @@ class RecipeController: UIViewController {
             favoriSelector.setImage(selectedImage, for: .normal)
         } else {
             favoriSelector.setImage(unselectedImage, for: .normal)
-        }
-    }
-  
-    // MARK: - IBAction
-    @IBAction func getDirection(_ sender: Any) {
-        if let url = URL(string: recipe.url) {
-            let safariVC = SFSafariViewController(url: url)
-            present(safariVC, animated: true, completion: nil)
         }
     }
 }

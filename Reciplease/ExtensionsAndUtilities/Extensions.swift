@@ -7,7 +7,7 @@
 
 import UIKit
 
-//MARK: - Extension
+//MARK: - Extensions
 
 extension UIViewController {
     func presentAlert(error: String) {
@@ -18,6 +18,7 @@ extension UIViewController {
     }
 }
 
+// MARK: - Extensions UITableView for placeHolder Text when empty
 extension UITableView {
     func setNoDataPlaceholder(_ message: String) {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
@@ -39,4 +40,22 @@ extension UITableView {
         self.separatorStyle = .singleLine
     }
 }
+// MARK: - Extensions RecipeResponse struct for Tests access
+extension Recipe {
+    init(testValue: String) {
+        label = testValue
+        image = ""
+        url = "www.test.com"
+        ingredientLines = []
+        totalTime = 15.78
+        calories = 12.99999
+        ingredients =  []
+        isFavorite =  false
+    }
+}
 
+extension Ingredient {
+    init(testValue: String) {
+        food = testValue
+    }
+}

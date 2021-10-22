@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import CoreData
 
-class SearchResultsController: UIViewController {
+final class SearchResultsController: UIViewController {
     
     // MARK: - Properties
     private var coreDataManager: CoreDataManager?
