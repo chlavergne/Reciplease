@@ -20,6 +20,8 @@ final class SearchResultsController: UIViewController {
     var showFavorite = true
     var recipes: [Recipe] = []
     var recipesAfterDelete: [Recipe] = []
+    var fetchingMore = false
+    var urlNext: URL?
     
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
@@ -40,7 +42,6 @@ final class SearchResultsController: UIViewController {
             recipes = coreDataManager!.savedRecipe
         } else {
             recipes = recipesAfterDelete
-            
         }
         recipesTableView.reloadData()
     }
@@ -98,5 +99,55 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
             isFavorite = false
         }
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            recipesTableView.tableFooterView = createSpinnerFooter()
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    
+    func beginBatchFetch() {
+        fetchingMore = true
+        DispatchQueue.main.async {
+            RecipeService.shared.fetchInfiniteScroll (urlNext: self.urlNext, callback: { result in
+                self.recipesTableView.tableFooterView = nil
+                switch result {
+                case .success(let data):
+                    self.urlNext = data._links.next.href!
+                    let dataToMap = data.hits
+                    let newRecipes = dataToMap.map { recipe in
+                        recipe.recipe
+                    }
+                    self.recipes.append(contentsOf: newRecipes)
+                case .failure(let error):
+                    switch error {
+                    case .noData:
+                        self.presentAlert(error: "No data received from the distant server")
+                    case .invalidResponse:
+                        break
+                    case.undecodableData:
+                        self.presentAlert(error: "Failure while trying to decode response")
+                    }
+                }
+            })
+        }
+        self.fetchingMore = false
+        self.recipesTableView.reloadData()
     }
 }

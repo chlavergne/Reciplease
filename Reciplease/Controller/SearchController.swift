@@ -12,7 +12,7 @@ final class SearchController: UIViewController {
     
     // MARK: - Propertie
     private var recipesLoaded: [Recipe] = []
-    
+    private var urlNext: URL?
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -45,9 +45,14 @@ final class SearchController: UIViewController {
         loadingIndicator.startAnimating()
         RecipeService.shared.fetchJSON (callback: { result in
             switch result {
-            case .success(let recipes):
+            case .success(let data):
                 self.loadingIndicator.stopAnimating()
-                self.recipesLoaded = recipes
+                self.urlNext = data._links.next.href!
+                let dataToMap = data.hits
+                self.recipesLoaded = dataToMap.map { recipe in
+                    recipe.recipe
+                }
+                
                 self.performSegue(withIdentifier: "ShowRecipes", sender: nil)
             case .failure(let error):
                 switch error {
@@ -68,6 +73,7 @@ final class SearchController: UIViewController {
             controller.recipes = self.recipesLoaded
             controller.recipesAfterDelete = self.recipesLoaded
             controller.showFavorite = false
+            controller.urlNext = self.urlNext
         }
     }
 }

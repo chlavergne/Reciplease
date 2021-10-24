@@ -8,8 +8,17 @@
 import Foundation
 
 struct RecipeResponse: Decodable {
-    let count: Int
-    let hits:[ApiRecipe]
+//    let count: Int
+    let hits: [ApiRecipe]
+    let _links: Link
+}
+
+struct Link: Decodable {
+    let next: Next
+}
+
+struct Next: Decodable {
+    let href: URL?
 }
 
 struct ApiRecipe: Decodable {
