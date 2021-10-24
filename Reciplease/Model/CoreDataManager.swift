@@ -45,12 +45,9 @@ open class CoreDataManager {
     func remove(recipe: Recipe, row: Int) {
         let itemIDsFetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "RecipeCoreData")
         itemIDsFetchRequest.resultType = .managedObjectIDResultType
-//        do {
         if let ids = try? managedObjectContext.fetch(itemIDsFetchRequest),
            let recipeToDelete = try? managedObjectContext.existingObject(with: ids[row]) {
             managedObjectContext.delete(recipeToDelete)
-//        }catch let error as NSError {
-//            print("Fetch item failed:\(error), \(error.userInfo)")
         }
         coreDataStack.saveContext()
     }

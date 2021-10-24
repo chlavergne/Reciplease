@@ -12,7 +12,7 @@ final class SearchController: UIViewController {
     
     // MARK: - Propertie
     private var recipesLoaded: [Recipe] = []
-    private var urlNext: URL?
+    private var urlFirst: URL?
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -47,7 +47,7 @@ final class SearchController: UIViewController {
             switch result {
             case .success(let data):
                 self.loadingIndicator.stopAnimating()
-                self.urlNext = data._links.next.href!
+                self.urlFirst = data._links.next.href!
                 let dataToMap = data.hits
                 self.recipesLoaded = dataToMap.map { recipe in
                     recipe.recipe
@@ -71,9 +71,8 @@ final class SearchController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SearchResultsController{
             controller.recipes = self.recipesLoaded
-            controller.recipesAfterDelete = self.recipesLoaded
             controller.showFavorite = false
-            controller.urlNext = self.urlNext
+            controller.urlNext = self.urlFirst
         }
     }
 }

@@ -51,21 +51,23 @@ final class RecipeService {
     }
     
     func fetchInfiniteScroll(urlNext: URL?, callback: @escaping (Result<RecipeResponse, ErrorCase>) -> Void) {
-//        let urlDefault =
-        session.request(url: urlNext ?? url!) { (response) in
-            guard let data = response.data else {
-                callback(.failure(.noData))
-                return
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: {
+            self.session.request(url: urlNext ?? self.url!) { (response) in
+                guard let data = response.data else {
+                    callback(.failure(.noData))
+                    return
+                }
+                guard response.response?.statusCode == 200 else {
+                    callback(.failure(.invalidResponse))
+                    return
+                }
+                guard let dataDecoded = try? JSONDecoder().decode(RecipeResponse.self, from: data) else {
+                    callback(.failure(.undecodableData))
+                    return
+                }
+                callback(.success(dataDecoded))
             }
-            guard response.response?.statusCode == 200 else {
-                callback(.failure(.invalidResponse))
-                return
-            }
-            guard let dataDecoded = try? JSONDecoder().decode(RecipeResponse.self, from: data) else {
-                callback(.failure(.undecodableData))
-                return
-            }
-            callback(.success(dataDecoded))
-        }
+        })
+        
     }
 }

@@ -12,16 +12,16 @@ import CoreData
 final class SearchResultsController: UIViewController {
     
     // MARK: - Properties
-    private var coreDataManager: CoreDataManager?
     static let recipeCellId = "RecipeTableViewCell"
+    private var coreDataManager: CoreDataManager?
     private var index = 0
     private var isFavorite = false
     private var selectedRecipe: Recipe?
     var showFavorite = true
     var recipes: [Recipe] = []
-    var recipesAfterDelete: [Recipe] = []
     var fetchingMore = false
     var urlNext: URL?
+    var recipeCount = 0
     
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
@@ -40,8 +40,6 @@ final class SearchResultsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if showFavorite == true {
             recipes = coreDataManager!.savedRecipe
-        } else {
-            recipes = recipesAfterDelete
         }
         recipesTableView.reloadData()
     }
@@ -67,7 +65,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         } else {
             recipesTableView.removeNoDataPlaceholder()
         }
-        return self.recipes.count
+        recipeCount = self.recipes.count
+        return recipeCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,8 +80,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
                                      options: .continueInBackground,completed: nil)
         cell.favoriteStar.isHidden = true
-        let savedRecipe = coreDataManager!.savedRecipe.map({$0.title})
-        if savedRecipe.contains(recipeResult.label) {
+        let savedRecipe = coreDataManager!.savedRecipe.map({$0.imageUrl})
+        if savedRecipe.contains(recipeResult.imageUrl) {
             cell.favoriteStar.isHidden = false
         }
         return cell
@@ -90,14 +89,16 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
-        let savedRecipe = coreDataManager!.savedRecipe.map({$0.title})
-        if savedRecipe.contains(self.selectedRecipe!.title) {
+        let savedRecipes = coreDataManager!.savedRecipe.map({$0.imageUrl})
+        print(savedRecipes)
+        if savedRecipes.contains(self.selectedRecipe!.imageUrl) {
             isFavorite = true
-            index = savedRecipe.firstIndex(of: self.selectedRecipe!.title) ?? 0
+            index = savedRecipes.firstIndex(of: self.selectedRecipe!.imageUrl) ?? 0
             recipes = coreDataManager!.savedRecipe
         } else {
             isFavorite = false
         }
+        print(isFavorite)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
     
@@ -111,43 +112,43 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.height {
-            recipesTableView.tableFooterView = createSpinnerFooter()
-            if !fetchingMore {
-                beginBatchFetch()
+        if showFavorite == false {
+            let offsetY = scrollView.contentOffset.y
+            if offsetY > (recipesTableView.contentSize.height-100-scrollView.frame.size.height) {
+                recipesTableView.tableFooterView = createSpinnerFooter()
+                if !fetchingMore {
+                    beginBatchFetch()
+                }
             }
         }
     }
     
     func beginBatchFetch() {
         fetchingMore = true
-        DispatchQueue.main.async {
-            RecipeService.shared.fetchInfiniteScroll (urlNext: self.urlNext, callback: { result in
-                self.recipesTableView.tableFooterView = nil
-                switch result {
-                case .success(let data):
-                    self.urlNext = data._links.next.href!
-                    let dataToMap = data.hits
-                    let newRecipes = dataToMap.map { recipe in
-                        recipe.recipe
-                    }
-                    self.recipes.append(contentsOf: newRecipes)
-                case .failure(let error):
-                    switch error {
-                    case .noData:
-                        self.presentAlert(error: "No data received from the distant server")
-                    case .invalidResponse:
-                        break
-                    case.undecodableData:
-                        self.presentAlert(error: "Failure while trying to decode response")
-                    }
+        RecipeService.shared.fetchInfiniteScroll (urlNext: self.urlNext, callback: { result in
+            self.recipesTableView.tableFooterView = nil
+            switch result {
+            case .success(let data):
+                let dataToMap = data.hits
+                let newRecipes = dataToMap.map { recipe in
+                    recipe.recipe
                 }
-            })
-        }
-        self.fetchingMore = false
-        self.recipesTableView.reloadData()
+                self.recipes.append(contentsOf: newRecipes)
+                DispatchQueue.main.async {
+                    self.recipesTableView.reloadData()
+                    self.fetchingMore = false
+                    self.urlNext = data._links.next.href!
+                }
+            case .failure(let error):
+                switch error {
+                case .noData:
+                    self.presentAlert(error: "No data received from the distant server")
+                case .invalidResponse:
+                    break
+                case.undecodableData:
+                    self.presentAlert(error: "Failure while trying to decode response")
+                }
+            }
+        })
     }
 }
