@@ -93,7 +93,6 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
         let savedRecipes = coreDataManager!.savedRecipe.map({$0.imageUrl})
-        print(savedRecipes)
         if savedRecipes.contains(self.selectedRecipe!.imageUrl) {
             isFavorite = true
             index = savedRecipes.firstIndex(of: self.selectedRecipe!.imageUrl) ?? 0
@@ -101,7 +100,6 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         } else {
             isFavorite = false
         }
-        print(isFavorite)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
 
