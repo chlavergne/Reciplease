@@ -12,6 +12,7 @@ import Foundation
 
 class RecipeServiceTests: XCTestCase {
 
+    // MARK: - Tests FetchJSON Method
     func testFetchJSON_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: nil, data: nil))
         let recipeService = RecipeService(session: session)
@@ -26,9 +27,10 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     func testFetchJSON_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO,
+                                                                      data: FakeResponseData.correctData))
         let recipeService = RecipeService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         recipeService.fetchJSON { result in
@@ -41,9 +43,10 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     func testFetchJSON_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK,
+                                                                      data: FakeResponseData.incorrectData))
         let recipeService = RecipeService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         recipeService.fetchJSON { result in
@@ -58,7 +61,8 @@ class RecipeServiceTests: XCTestCase {
     }
 
     func testFetchJSON_WhenCorrectDataIsPassed_ThenShouldReturnSuccededCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData))
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK,
+                                                                      data: FakeResponseData.correctData))
         let recipeService = RecipeService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         recipeService.fetchJSON { result in
@@ -71,9 +75,11 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
-    func testFtechInfiniteScroll_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
+
+    // MARK: - Tests FetchInfiniteScroll Methods
+    func testFetchInfiniteScroll_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO,
+                                                                      data: FakeResponseData.correctData))
         let recipeService = RecipeService(session: session)
         let url = URL(string: "https://www.apple.com")
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -87,8 +93,8 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
-    
-    func testFtechInfiniteScroll_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
+
+    func testFetchInfiniteScroll_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: nil, data: nil))
         let recipeService = RecipeService(session: session)
         let url = URL(string: "https://www.apple.com")
@@ -103,9 +109,10 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
-    
-    func testFtechInfiniteScroll_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
+
+    func testFetchInfiniteScroll_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK,
+                                                                      data: FakeResponseData.incorrectData))
         let recipeService = RecipeService(session: session)
         let url = URL(string: "https://www.apple.com")
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -119,9 +126,10 @@ class RecipeServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
-    
-    func testFtechInfiniteScroll_WhenCorrectDataIsPassed_ThenShouldReturnSuccededCallback() {
-        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData))
+
+    func testFetchInfiniteScroll_WhenCorrectDataIsPassed_ThenShouldReturnSuccededCallback() {
+        let session = FakeAlamofireSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK,
+                                                                      data: FakeResponseData.correctData))
         let recipeService = RecipeService(session: session)
         let url = URL(string: "")
         let expectation = XCTestExpectation(description: "Wait for queue change.")

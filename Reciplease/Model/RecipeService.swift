@@ -5,9 +5,8 @@
 //  Created by Christophe Expleo on 06/10/2021.
 //
 
-import Foundation
+import UIKit
 import Alamofire
-
 
 enum ErrorCase: Error {
     case noData
@@ -16,18 +15,18 @@ enum ErrorCase: Error {
 }
 
 final class RecipeService {
-    
+
     // MARK: - Properties
     static let shared = RecipeService()
-    var url = URL(string:"www.init.com")
     private let session: AlamofireSession
-    
+    var url = URL(string: "www.init.com")
+
     // MARK: - Initializer
     init(session: AlamofireSession = RecipeSession()) {
         self.session = session
     }
-    
-    // MARK: - Method
+
+    // MARK: - Methods
     func fetchJSON(callback: @escaping (Result<RecipeResponse, ErrorCase>) -> Void) {
         let urlShort = "https://api.edamam.com/api/recipes/v2"
         let ingredients = IngredientService.shared.ingredients.joined(separator: ",")
@@ -49,7 +48,7 @@ final class RecipeService {
             callback(.success(dataDecoded))
         }
     }
-    
+
     func fetchInfiniteScroll(urlNext: URL?, callback: @escaping (Result<RecipeResponse, ErrorCase>) -> Void) {
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: {
             self.session.request(url: urlNext ?? self.url!) { (response) in
@@ -68,6 +67,5 @@ final class RecipeService {
                 callback(.success(dataDecoded))
             }
         })
-        
     }
 }

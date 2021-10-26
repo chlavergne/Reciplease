@@ -7,8 +7,9 @@
 
 import UIKit
 
-class CustomView: UIView {
-    
+final class CustomView: UIView {
+
+// Used for the Calories and TotalTime View in the right corner of the recipe
     override init(frame: CGRect) {
         super.init(frame: frame)
         setRadiusBorder()
@@ -17,7 +18,8 @@ class CustomView: UIView {
         super.init(coder: aDecoder)
         setRadiusBorder()
     }
-    
+
+    // MARK: - Method
     func setRadiusBorder() {
         layer.cornerRadius = 10
         layer.borderWidth = 2

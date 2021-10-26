@@ -9,14 +9,14 @@ import XCTest
 @testable import Reciplease
 
 class IngredientServicetests: XCTestCase {
-    
+
     func testWhenAddIngedientMethodThenOneMoreIngredientInIngredients() {
         let testService = IngredientService()
         XCTAssertTrue(testService.ingredients.isEmpty)
         testService.add(ingredient: "Chicken")
         XCTAssertFalse(testService.ingredients.isEmpty)
     }
-    
+
     func testWhenRemoveIngedientMethodThenOneLessIngredientInIngredients() {
         let testService = IngredientService()
         testService.add(ingredient: "Chicken")

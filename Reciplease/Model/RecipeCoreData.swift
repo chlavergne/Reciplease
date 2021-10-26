@@ -8,6 +8,8 @@
 import CoreData
 
 class RecipeCoreData: NSManagedObject {
+    
+    // MARK: - Propertie
     var model: Recipe {
         let ingredient = try! JSONDecoder().decode([Ingredient].self, from: self.ingredients!)
         let ingredientLines = try! JSONDecoder().decode([String].self, from: self.ingredientLines!)

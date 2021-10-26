@@ -5,14 +5,15 @@
 //  Created by Christophe Expleo on 12/10/2021.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
-open class CoreDataManager {
-    
+final class CoreDataManager {
+
+    // MARK: - Properties
     let coreDataStack: CoreDataStack
     let managedObjectContext: NSManagedObjectContext
-    
+
     var savedRecipe: [Recipe] {
         let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
         var savedRecipe: [RecipeCoreData] = []
@@ -21,15 +22,16 @@ open class CoreDataManager {
         }
         let recipes = savedRecipe.map { coreDataManager in
             coreDataManager.model
-               }
+        }
         return recipes
     }
-    
+
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.mainContext
     }
-    
+
+    // MARK: - Methods
     func insert(recipe: Recipe) {
         let savedRecipe = RecipeCoreData(context: managedObjectContext)
         savedRecipe.title = recipe.label
@@ -41,7 +43,7 @@ open class CoreDataManager {
         savedRecipe.ingredientLines = try? JSONEncoder().encode(recipe.ingredientLines)
         coreDataStack.saveContext()
     }
-    
+
     func remove(recipe: Recipe, row: Int) {
         let itemIDsFetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "RecipeCoreData")
         itemIDsFetchRequest.resultType = .managedObjectIDResultType

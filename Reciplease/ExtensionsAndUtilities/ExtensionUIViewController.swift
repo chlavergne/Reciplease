@@ -7,8 +7,7 @@
 
 import UIKit
 
-//MARK: - Extension UIViewController
-
+// MARK: - Extension UIViewController
 extension UIViewController {
     func presentAlert(error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)

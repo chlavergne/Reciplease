@@ -40,6 +40,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70P-iT-HJ0">
                                 <rect key="frame" x="30" y="455" width="260" height="54"/>
                                 <color key="backgroundColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.33333333333333331" green="0.60392156862745094" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Search For Recipes">
                                     <fontDescription key="titleFontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="25"/>
@@ -182,7 +183,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3123.1884057971015" y="-674.33035714285711"/>
+            <point key="canvasLocation" x="3356" y="-753"/>
         </scene>
         <!--SearchresultsController-->
         <scene sceneID="SjK-wA-30k">
@@ -213,7 +214,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSb-ym-b2W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4423" y="-190"/>
+            <point key="canvasLocation" x="3354" y="40"/>
         </scene>
         <!--Recipe Controller-->
         <scene sceneID="SQ1-GY-JBS">
@@ -387,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aH5-5C-2Rl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5554" y="-190"/>
+            <point key="canvasLocation" x="4508" y="39"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MfG-AM-xtQ">
@@ -410,7 +411,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYq-v7-vSb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213.04347826087" y="-674.33035714285711"/>
+            <point key="canvasLocation" x="2211" y="-753"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1aL-N5-FQW">
@@ -436,7 +437,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lzl-s8-Zpn"/>
+        <segue reference="UEw-s2-dOw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33226698640000002" green="0.60539948939999999" blue="0.47277212140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>

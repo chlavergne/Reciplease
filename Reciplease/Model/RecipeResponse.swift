@@ -8,7 +8,6 @@
 import Foundation
 
 struct RecipeResponse: Decodable {
-//    let count: Int
     let hits: [ApiRecipe]
     let _links: Link
 }
@@ -33,14 +32,13 @@ struct Recipe: Decodable {
     var totalTime: Double
     let calories: Double
     var ingredients: [Ingredient]
-    
     var isFavorite: Bool?
     var displayableIngredients: String {
         var joinedList = ""
         let ingredients = ingredients
         let ingredientCount = ingredients.count
         var ingredientList: [String] = []
-        
+
         for i in 0..<ingredientCount {
             ingredientList.append(ingredients[i].food)
             let capitalizedList = ingredientList.map { $0.capitalized }
@@ -48,20 +46,20 @@ struct Recipe: Decodable {
         }
         return joinedList
     }
-    
+
     var title: String {
         return label
     }
-    
+
     var displayableCalories: String {
         return String(format: "%.0f Cal", calories)
     }
-    
+
     var imageUrl: URL {
         let url = URL(string: image)
         return url ?? URL(string: "www.default.com")!
     }
-    
+
     var displayableTotalTime: String {
         let formatedTime: String
         if String(totalTime) == "0.0" {

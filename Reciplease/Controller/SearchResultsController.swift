@@ -10,7 +10,7 @@ import SDWebImage
 import CoreData
 
 final class SearchResultsController: UIViewController {
-    
+
     // MARK: - Properties
     static let recipeCellId = "RecipeTableViewCell"
     private var coreDataManager: CoreDataManager?
@@ -22,10 +22,11 @@ final class SearchResultsController: UIViewController {
     var fetchingMore = false
     var urlNext: URL?
     var recipeCount = 0
-    
+
     // MARK: - IBOutlet
     @IBOutlet weak var recipesTableView: UITableView!
-    
+
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -36,14 +37,14 @@ final class SearchResultsController: UIViewController {
                                   forCellReuseIdentifier: SearchResultsController.recipeCellId)
         recipesTableView.separatorColor = UIColor.clear
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         if showFavorite == true {
             recipes = coreDataManager!.savedRecipe
         }
         recipesTableView.reloadData()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? RecipeController, let recipe = selectedRecipe {
             controller.recipe = recipe
@@ -54,11 +55,12 @@ final class SearchResultsController: UIViewController {
 }
 
 // MARK: - Extensions
+// TableView
 extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.recipes.count == 0 {
             recipesTableView.setNoDataPlaceholder("Your favorites list is empty, add a recipe")
@@ -68,17 +70,18 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         recipeCount = self.recipes.count
         return recipeCount
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId, for: indexPath) as! RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsController.recipeCellId,
+                                                 for: indexPath) as! RecipeTableViewCell
         let recipeResult = recipes[indexPath.row]
         cell.title.text = recipeResult.label
         cell.calories.text = recipeResult.displayableCalories
         cell.totalTime.text = recipeResult.displayableTotalTime
         cell.subtitle.text = recipeResult.displayableIngredients
         let urlToLoad = recipeResult.imageUrl
-        cell.recipeImage.sd_setImage(with: urlToLoad,placeholderImage: UIImage(systemName: "generique2"),
-                                     options: .continueInBackground,completed: nil)
+        cell.recipeImage.sd_setImage(with: urlToLoad, placeholderImage: UIImage(systemName: "generique2"),
+                                     options: .continueInBackground, completed: nil)
         cell.favoriteStar.isHidden = true
         let savedRecipe = coreDataManager!.savedRecipe.map({$0.imageUrl})
         if savedRecipe.contains(recipeResult.imageUrl) {
@@ -86,7 +89,7 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRecipe = recipes[indexPath.row]
         let savedRecipes = coreDataManager!.savedRecipe.map({$0.imageUrl})
@@ -101,7 +104,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         print(isFavorite)
         self.performSegue(withIdentifier: "ShowRecipeDetail", sender: nil)
     }
-    
+
+// Add a loadingSpinner at the bottom of tableView when next recipes are loading
     private func createSpinnerFooter() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         let spinner = UIActivityIndicatorView()
@@ -110,7 +114,8 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
         spinner.startAnimating()
         return footerView
     }
-    
+
+// implement the infinite scroll
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if showFavorite == false {
             let offsetY = scrollView.contentOffset.y
@@ -122,10 +127,10 @@ extension SearchResultsController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-    
+
     func beginBatchFetch() {
         fetchingMore = true
-        RecipeService.shared.fetchInfiniteScroll (urlNext: self.urlNext, callback: { result in
+        RecipeService.shared.fetchInfiniteScroll(urlNext: self.urlNext, callback: { result in
             self.recipesTableView.tableFooterView = nil
             switch result {
             case .success(let data):

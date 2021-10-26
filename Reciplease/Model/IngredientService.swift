@@ -14,15 +14,15 @@ class IngredientService {
     static let shared = IngredientService()
     
     init() {}
-    
+
     // MARK: - Methods
     func add(ingredient: String) {
         ingredients.append(ingredient)
     }
-    
+
     func removeIngredient() {
         if ingredients.count > 0 {
             ingredients.removeLast()
-        } 
+        }
     }
 }
