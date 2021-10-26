@@ -8,7 +8,7 @@
 import XCTest
 @testable import Reciplease
 
-class IngredientServicetests: XCTestCase {
+final class IngredientServicetests: XCTestCase {
 
     func testWhenAddIngedientMethodThenOneMoreIngredientInIngredients() {
         let testService = IngredientService()

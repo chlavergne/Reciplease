@@ -10,7 +10,7 @@ import Foundation
 @testable import Reciplease
 @testable import Alamofire
 
-class RecipeServiceTests: XCTestCase {
+final class RecipeServiceTests: XCTestCase {
 
     // MARK: - Tests FetchJSON Method
     func testFetchJSON_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {

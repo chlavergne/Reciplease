@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IngredientService {
+final class IngredientService {
     
     // MARK: - Properties
     var ingredients: [String] = []
