@@ -7,7 +7,7 @@
 
 import CoreData
 
-class RecipeCoreData: NSManagedObject {
+final class RecipeCoreData: NSManagedObject {
     
     // MARK: - Propertie
     var model: Recipe {

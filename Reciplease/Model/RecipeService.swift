@@ -19,7 +19,7 @@ final class RecipeService {
     // MARK: - Properties
     static let shared = RecipeService()
     private let session: AlamofireSession
-    var url = URL(string: "www.init.com")
+    var url: URL?
 
     // MARK: - Initializer
     init(session: AlamofireSession = RecipeSession()) {

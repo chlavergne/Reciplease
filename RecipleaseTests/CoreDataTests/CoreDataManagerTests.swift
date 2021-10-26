@@ -8,7 +8,7 @@
 import XCTest
 @testable import Reciplease
 
-class CoreDataManagerTests: XCTestCase {
+final class CoreDataManagerTests: XCTestCase {
 
     // MARK: - Properties
     var coreDataStack: MockCoreDataStack!

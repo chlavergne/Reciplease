@@ -8,7 +8,7 @@
 import XCTest
 @testable import Reciplease
 
-class RecipeResponsetests: XCTestCase {
+final class RecipeResponsetests: XCTestCase {
 
     func testDisplayableCaloriesRoundedWithNoDecimalDigits() {
         XCTAssertEqual(Recipe.mock1.displayableCalories, "13 Cal")
